@@ -7,7 +7,6 @@ class Homepage extends Component {
   };
   render() {
     const { articles } = this.state;
-    console.log(articles, "<<<<");
     return (
       <div>
         <ul>
@@ -16,6 +15,9 @@ class Homepage extends Component {
               <div key={article._id}>
                 <li>{article.title}</li>
                 <p>By {article.created_by.name}</p>
+                <p>
+                  Votes {article.votes}, Comments {article.comment_count}
+                </p>
               </div>
             );
           })}
