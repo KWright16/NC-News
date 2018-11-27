@@ -10,7 +10,6 @@ class Article extends Component {
   render() {
     if (this.state.isLoading) return <p>Loading...</p>;
     const { article } = this.state;
-    console.log(article);
     return (
       <div>
         <h1>{article.title}</h1>

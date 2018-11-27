@@ -4,9 +4,15 @@ import * as api from "../api";
 
 class Login extends Component {
   state = {
-    username: ""
+    username: "",
+    loggedIn: false,
+    loading: true
   };
   render() {
+    console.log(this.props, "<<<<Props");
+    const { username, loggedIn, loading } = this.state;
+    if (loading) return <p>Loading...</p>;
+    if (loggedIn) return <h2>Welcome back {username}</h2>;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -14,7 +20,7 @@ class Login extends Component {
           <input
             id="username"
             type="text"
-            value={this.state.username}
+            value={username}
             onChange={this.handleChange}
           />
           <button>Submit</button>
@@ -22,13 +28,6 @@ class Login extends Component {
       </div>
     );
   }
-  handleSubmit = event => {
-    event.preventDefault();
-    api.getData("users").then(users => {
-      this.props.checkUser(users, this.state.username);
-      // this.setState?
-    });
-  };
 
   handleChange = event => {
     const { id, value } = event.target; // check these with console logs
@@ -36,6 +35,21 @@ class Login extends Component {
       [id]: value
     });
   };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    api.getUsers(this.state.username).then(user => {
+      this.props.login(user);
+      this.setState({
+        loggedIn: true
+      });
+    });
+  };
+  componentDidMount() {
+    this.setState({
+      loading: false
+    });
+  }
 }
 
 Login.propTypes = {

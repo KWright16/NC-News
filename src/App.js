@@ -11,10 +11,11 @@ import Login from "./components/Login";
 
 class App extends Component {
   state = {
-    user: "",
+    user: {},
     topic: {}
   };
   render() {
+    console.log(this.state.user, "USER");
     return (
       <div className="App">
         <header className="App-header">
@@ -24,7 +25,7 @@ class App extends Component {
         <Sidebar /> {/* pass down user to display message in sidebar*/}
         <Router className="main">
           <Homepage path="/" />
-          <Login checkUser={this.checkUser} path="/login" />
+          <Login user={this.state.user} login={this.login} path="/login" />
           <Topic getTopic={this.getTopic} path="/topic/:slug" />
           <Article path="/articles/:article_id" />
           {/*<Topic path="/topics/:topic_slug/articles" />          
@@ -34,11 +35,8 @@ class App extends Component {
       </div>
     );
   }
-  checkUser = (users, username) => {
-    const currentUser = users.filter(user => {
-      return user === username;
-    });
-    this.setState(currentUser);
+  login = user => {
+    this.setState({ user });
   };
   getTopic = topic => {
     this.setState({ topic });
