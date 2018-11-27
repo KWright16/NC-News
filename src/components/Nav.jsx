@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Link } from "@reach/router";
+// import PropTypes from "prop-types";
+// import { Link, Router } from "@reach/router";
 import * as api from "../api";
+// import Topic from "./Topic";
 
 class Nav extends Component {
   state = {
@@ -21,6 +22,9 @@ class Nav extends Component {
             );
           })} */}
         </nav>
+        {/* <Router> */}
+        {/* <Topic path=":topic_slug" /> check this end point */}
+        {/* </Router> */}
       </div>
     );
   }
@@ -36,6 +40,6 @@ class Nav extends Component {
   }
 }
 
-Nav.propTypes = {};
+// Nav.propTypes = {};
 
 export default Nav;

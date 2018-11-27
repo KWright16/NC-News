@@ -4,9 +4,9 @@ import Nav from "./components/Nav";
 import { Router } from "@reach/router";
 import Homepage from "./components/Homepage";
 import Sidebar from "./components/Sidebar";
-import Topic from "./components/Topic";
-import Article from "./components/Article";
-import Comments from "./components/Comments";
+// import Topic from "./components/Topic";
+// import Article from "./components/Article";
+// import Comments from "./components/Comments";
 import Login from "./components/Login";
 
 class App extends Component {

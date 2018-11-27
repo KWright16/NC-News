@@ -6,16 +6,19 @@ class Homepage extends Component {
     articles: []
   };
   render() {
+    const { articles } = this.state;
+    console.log(articles, "<<<<");
     return (
       <div>
         <ul>
-          {/* {articles.map(article => {
+          {articles.map(article => {
             return (
-              <div>
-                <li key={article._id}>{article.title}</li>
+              <div key={article._id}>
+                <li>{article.title}</li>
+                <p>By {article.created_by.name}</p>
               </div>
             );
-          })} */}
+          })}
         </ul>
       </div>
     );
@@ -24,7 +27,6 @@ class Homepage extends Component {
     api
       .getData("articles")
       .then(({ articles }) => {
-        console.log(articles);
         this.setState({ articles });
       })
       .catch(console.log);

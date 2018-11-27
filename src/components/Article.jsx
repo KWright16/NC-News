@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 class Article extends Component {
   render() {
@@ -7,6 +7,6 @@ class Article extends Component {
   }
 }
 
-Article.propTypes = {};
+// Article.propTypes = {};
 
 export default Article;
