@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import * as api from "../api";
 import Comments from "../components/Comments";
 import { Link, Router } from "@reach/router";
+import UpdateVotes from "./UpdateVotes";
 
 class Article extends Component {
   state = {
@@ -10,6 +11,7 @@ class Article extends Component {
     isLoading: true
   };
   render() {
+    // console.log(this.props, "PROPS!!!!");
     if (this.state.isLoading) return <p>Loading...</p>;
     const { article } = this.state;
     return (
@@ -19,8 +21,7 @@ class Article extends Component {
         <p>
           {article.comment_count} comments, {article.votes} votes
         </p>
-        <button>Up Vote</button>
-        <button>Down Vote</button>
+        <UpdateVotes urlId={this.props.uri} />
         <br />
         <br />
         <p className="articleBody">{article.body}</p>

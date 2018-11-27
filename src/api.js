@@ -20,3 +20,9 @@ export const getData = async (dataType, singleDatum, subData) => {
     return data;
   }
 };
+export const updateData = (urlId, value) => {
+  console.log(`${BASE_URL}${urlId}/?vote=${value}`);
+  const { data } = /*await*/ axios.put(`${BASE_URL}${urlId}/?vote=${value}`);
+  console.log(data, "<<<<>>>>");
+  return data;
+};

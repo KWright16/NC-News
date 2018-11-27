@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import * as api from "../api";
+import UpdateVotes from "./UpdateVotes";
 
 class Comments extends Component {
   state = {
@@ -24,8 +25,7 @@ class Comments extends Component {
 
               <p className="faded">{comment.created_at.split("T")[0]}</p>
               <p>{comment.votes} votes</p>
-              <button>Up Vote</button>
-              <button>Down Vote</button>
+              <UpdateVotes urlId={this.props.uri} />
               <br />
               <br />
             </div>
