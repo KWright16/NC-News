@@ -5,13 +5,10 @@ import * as api from "../api";
 class Login extends Component {
   state = {
     username: "",
-    loggedIn: false,
-    loading: true
+    loggedIn: false
   };
   render() {
-    console.log(this.props, "<<<<Props");
-    const { username, loggedIn, loading } = this.state;
-    if (loading) return <p>Loading...</p>;
+    const { username, loggedIn } = this.state;
     if (loggedIn) return <h2>Welcome back {username}</h2>;
     return (
       <div>
@@ -45,15 +42,10 @@ class Login extends Component {
       });
     });
   };
-  componentDidMount() {
-    this.setState({
-      loading: false
-    });
-  }
 }
 
 Login.propTypes = {
-  checkUser: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired
 };
 
 export default Login;

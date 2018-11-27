@@ -15,17 +15,17 @@ class App extends Component {
     topic: {}
   };
   render() {
-    console.log(this.state.user, "USER");
     return (
       <div className="App">
         <header className="App-header">
           <h1>NC News</h1>
         </header>
         <Nav />
-        <Sidebar /> {/* pass down user to display message in sidebar*/}
+        <Sidebar user={this.state.user} />{" "}
+        {/* pass down user to display message in sidebar*/}
         <Router className="main">
           <Homepage path="/" />
-          <Login user={this.state.user} login={this.login} path="/login" />
+          <Login login={this.login} path="/login" />
           <Topic getTopic={this.getTopic} path="/topic/:slug" />
           <Article path="/articles/:article_id" />
           {/*<Topic path="/topics/:topic_slug/articles" />          
