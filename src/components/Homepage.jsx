@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../api";
+import { Link } from "@reach/router";
 
 class Homepage extends Component {
   state = {
@@ -13,7 +14,7 @@ class Homepage extends Component {
           {articles.map(article => {
             return (
               <div key={article._id}>
-                <li>{article.title}</li>
+                <Link to={`/articles/${article._id}`}>{article.title}</Link>
                 <p>By {article.created_by.name}</p>
                 <p>
                   Votes {article.votes}, Comments {article.comment_count}

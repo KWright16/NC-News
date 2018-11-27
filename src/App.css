@@ -13,14 +13,20 @@ header {
   border: black 1px solid;
   grid-area: header;
 }
+.articleBody {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .nav {
   border: black 1px solid;
   grid-area: nav;
-  /* width: 50%;
-  margin-left: auto;
-  margin-right: auto; */
+  padding: 2em;
 }
-
+.navLink {
+  display: flex;
+  justify-content: space-evenly;
+}
 .sidebar {
   border: black 1px solid;
   grid-area: sidebar;

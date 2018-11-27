@@ -5,7 +5,7 @@ import { Router } from "@reach/router";
 import Homepage from "./components/Homepage";
 import Sidebar from "./components/Sidebar";
 import Topic from "./components/Topic";
-// import Article from "./components/Article";
+import Article from "./components/Article";
 // import Comments from "./components/Comments";
 import Login from "./components/Login";
 
@@ -26,8 +26,8 @@ class App extends Component {
           <Homepage path="/" />
           <Login checkUser={this.checkUser} path="/login" />
           <Topic getTopic={this.getTopic} path="/topic/:slug" />
-          {/*<Topic path="/topics/:topic_slug/articles" />
-          <Article path="/topics/:article_id" />
+          <Article path="/articles/:article_id" />
+          {/*<Topic path="/topics/:topic_slug/articles" />          
           <Comments path="/comments/:article_id/comments" /> */}
         </Router>
         <footer />
