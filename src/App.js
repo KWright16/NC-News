@@ -22,14 +22,12 @@ class App extends Component {
         </header>
         <Nav />
         <Sidebar user={this.state.user} />{" "}
-        {/* pass down user to display message in sidebar*/}
         <Router className="main">
           <Homepage path="/" />
           <Login login={this.login} path="/login" />
           <Topic getTopic={this.getTopic} path="/topic/:slug" />
-          <Article path="/articles/:article_id" />
-          {/*<Topic path="/topics/:topic_slug/articles" />          
-          <Comments path="/comments/:article_id/comments" /> */}
+          <Article path="/articles/:article_id/*" />
+          {/*<Topic path="/topics/:topic_slug/articles" /> */}
         </Router>
         <footer />
       </div>

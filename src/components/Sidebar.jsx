@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "@reach/router";
 
 const Sidebar = props => {
-  console.log(props, "PROPS!");
   return (
     <div className="sidebar">
       <section>

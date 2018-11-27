@@ -4,7 +4,7 @@ import * as api from "../api";
 
 class Login extends Component {
   state = {
-    username: "",
+    username: "jessjelly",
     loggedIn: false
   };
   render() {

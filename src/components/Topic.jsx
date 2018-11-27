@@ -39,7 +39,7 @@ class Topic extends Component {
   }
   fetchArticles = () => {
     api
-      .getData("topics", this.props.slug)
+      .getData("topics", this.props.slug, "articles")
       .then(({ articles }) => {
         this.setState({ articles });
       })
