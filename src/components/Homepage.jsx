@@ -21,13 +21,13 @@ class Homepage extends Component {
     );
   }
   componentDidMount() {
-    //     api
-    //       .getArticles()
-    //       .then(({ articles }) => {
-    //         console.log(articles);
-    //         this.setState({ articles });
-    //       })
-    //       .catch(console.log);
+    api
+      .getData("articles")
+      .then(({ articles }) => {
+        console.log(articles);
+        this.setState({ articles });
+      })
+      .catch(console.log);
   }
 }
 

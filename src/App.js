@@ -7,10 +7,11 @@ import Sidebar from "./components/Sidebar";
 import Topic from "./components/Topic";
 import Article from "./components/Article";
 import Comments from "./components/Comments";
+import Login from "./components/Login";
 
 class App extends Component {
   state = {
-    user: {}
+    user: ""
   };
   render() {
     return (
@@ -19,17 +20,24 @@ class App extends Component {
           <h1>NC News</h1>
         </header>
         <Nav />
-        <Sidebar />
+        <Sidebar /> {/* pass down user to display message in sidebar*/}
         <Router className="main">
           <Homepage path="/" />
-          <Topic path="/topics/:topic_slug/articles" />
+          <Login checkUser={this.checkUser} path="/login" />
+          {/*<Topic path="/topics/:topic_slug/articles" />
           <Article path="/topics/:article_id" />
-          <Comments path="/comments/:article_id/comments" />
+          <Comments path="/comments/:article_id/comments" /> */}
         </Router>
         <footer />
       </div>
     );
   }
+  checkUser = (users, username) => {
+    const currentUser = users.filter(user => {
+      return user === username;
+    });
+    this.setState(currentUser);
+  };
 }
 
 export default App;

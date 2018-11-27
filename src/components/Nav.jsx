@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "@reach/router";
+import * as api from "../api";
 
 class Nav extends Component {
   state = {
@@ -14,7 +15,7 @@ class Nav extends Component {
 
           {/* {topics.map(topic => {
             return (
-              <Link to={`/topics`} key={topic.slug}>
+              <Link to={`/topic/:topic_slug`} key={topic.slug}>
                 {topic.name}
               </Link> 
             );
@@ -22,6 +23,16 @@ class Nav extends Component {
         </nav>
       </div>
     );
+  }
+  componentDidMount() {
+    api
+      .getData("topics")
+      .then(({ topics }) => {
+        this.setState({ topics });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }
 
