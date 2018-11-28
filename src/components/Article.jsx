@@ -11,9 +11,9 @@ class Article extends Component {
     isLoading: true
   };
   render() {
-    // console.log(this.props, "PROPS!!!!");
-    if (this.state.isLoading) return <p>Loading...</p>;
-    const { article } = this.state;
+    const { article, isLoading } = this.state;
+    if (isLoading) return <p>Loading...</p>;
+
     return (
       <div>
         <h1>{article.title}</h1>
@@ -21,7 +21,10 @@ class Article extends Component {
         <p>
           {article.comment_count} comments, {article.votes} votes
         </p>
-        <UpdateVotes urlId={this.props.uri} />
+        <UpdateVotes
+          updateArticleVotes={this.updateArticleVotes}
+          urlId={this.props.uri}
+        />
         <br />
         <br />
         <p className="articleBody">{article.body}</p>
@@ -43,6 +46,12 @@ class Article extends Component {
       })
       .catch(console.log);
   }
+
+  updateArticleVotes = ({ article }) => {
+    this.setState(state => {
+      return { article: { ...state.article, votes: article.votes } };
+    });
+  };
 }
 
 // Article.propTypes = {

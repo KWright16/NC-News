@@ -17,11 +17,11 @@ class UpdateVotes extends Component {
   }
   handleClick = event => {
     const { value } = event.target;
-    api.updateData(this.props.urlId, value).then(article => {
-      {
-        /*update votes has wrong file path*/
-      }
-      console.log({ article }, "ARTICLE");
+    const urlId = this.props.comment
+      ? `/comments/${this.props.comment._id}`
+      : this.props.urlId;
+    api.updateData(urlId, value).then(article => {
+      this.props.updateArticleVotes(article);
     });
   };
 }

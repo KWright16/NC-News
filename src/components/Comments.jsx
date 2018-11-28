@@ -14,7 +14,6 @@ class Comments extends Component {
       isLoading
     } = this.state;
     if (isLoading) return <p>Loading...</p>;
-    console.log(comments, "<<<");
     return (
       <div>
         {comments.map(comment => {
@@ -22,10 +21,12 @@ class Comments extends Component {
             <div key={comment._id}>
               <p className="by">{comment.created_by.username}</p>
               <p>{comment.body}</p>
-
               <p className="faded">{comment.created_at.split("T")[0]}</p>
               <p>{comment.votes} votes</p>
-              <UpdateVotes urlId={this.props.uri} />
+              <UpdateVotes
+                updateArticleVotes={this.updateArticleVotes}
+                comment={comment}
+              />
               <br />
               <br />
             </div>
@@ -38,7 +39,6 @@ class Comments extends Component {
     api
       .getData("articles", this.props.article_id, "comments")
       .then(comments => {
-        console.log(comments);
         this.setState({
           comments,
           isLoading: false
