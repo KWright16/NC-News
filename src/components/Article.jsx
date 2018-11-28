@@ -18,12 +18,13 @@ class Article extends Component {
       <div>
         <h1>{article.title}</h1>
         <h3 className="by">By {article.created_by.name}</h3>
-        <p>
+        {/* <p>
           {article.comment_count} comments, {article.votes} votes
-        </p>
+        </p> */}
         <UpdateVotes
-          updateArticleVotes={this.updateArticleVotes}
+          updateVotes={this.updateVotes}
           urlId={this.props.uri}
+          votes={article.votes}
         />
         <br />
         <br />
@@ -47,7 +48,7 @@ class Article extends Component {
       .catch(console.log);
   }
 
-  updateArticleVotes = ({ article }) => {
+  updateVotes = ({ article }) => {
     this.setState(state => {
       return { article: { ...state.article, votes: article.votes } };
     });

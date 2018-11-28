@@ -11,7 +11,7 @@ export const getData = async (dataType, singleDatum, subData) => {
     const { data } = await axios.get(
       `${BASE_URL}/${dataType}/${singleDatum}/${subData}`
     );
-    return data;
+    return data[subData];
   } else if (singleDatum) {
     const { data } = await axios.get(`${BASE_URL}/${dataType}/${singleDatum}`);
     return data;

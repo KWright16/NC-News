@@ -9,10 +9,7 @@ class Comments extends Component {
     isLoading: true
   };
   render() {
-    const {
-      comments: { comments },
-      isLoading
-    } = this.state;
+    const { comments, isLoading } = this.state;
     if (isLoading) return <p>Loading...</p>;
     return (
       <div>
@@ -22,10 +19,11 @@ class Comments extends Component {
               <p className="by">{comment.created_by.username}</p>
               <p>{comment.body}</p>
               <p className="faded">{comment.created_at.split("T")[0]}</p>
-              <p>{comment.votes} votes</p>
+              {/* <p>{comment.votes} votes</p> */}
               <UpdateVotes
-                updateArticleVotes={this.updateArticleVotes}
+                updateVotes={this.updateVotes}
                 comment={comment}
+                votes={comment.votes}
               />
               <br />
               <br />
@@ -39,12 +37,25 @@ class Comments extends Component {
     api
       .getData("articles", this.props.article_id, "comments")
       .then(comments => {
+        console.log(comments);
         this.setState({
           comments,
           isLoading: false
         });
       });
   }
+  updateVotes = ({ comment }) => {
+    const updatedComments = this.state.comments.map(originalComment => {
+      if (comment._id === originalComment._id) {
+        return { ...originalComment, votes: comment.votes };
+      } else {
+        return originalComment;
+      }
+    });
+    this.setState(state => {
+      return { comments: updatedComments };
+    });
+  };
 }
 
 // Comments.propTypes = {};
