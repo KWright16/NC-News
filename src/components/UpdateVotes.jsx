@@ -7,7 +7,7 @@ class UpdateVotes extends Component {
     console.log();
     return (
       <div>
-        <p>{this.props.votes}</p>
+        <p>{this.props.votes} votes</p>
         <button onClick={this.handleClick} value="up">
           Up Vote
         </button>

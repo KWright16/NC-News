@@ -18,17 +18,15 @@ class Article extends Component {
       <div>
         <h1>{article.title}</h1>
         <h3 className="by">By {article.created_by.name}</h3>
-        {/* <p>
-          {article.comment_count} comments, {article.votes} votes
-        </p> */}
+        <p>{article.comment_count} comments,</p>
         <UpdateVotes
           updateVotes={this.updateVotes}
           urlId={this.props.uri}
           votes={article.votes}
         />
-        <br />
-        <br />
         <p className="articleBody">{article.body}</p>
+        <br />
+        <br />
         <Link to={`/articles/${article._id}/comments`}>Show Comments</Link>
         <Router>
           <Comments article={this.props.article_id} path="/comments" />
