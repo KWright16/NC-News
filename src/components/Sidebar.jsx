@@ -14,8 +14,9 @@ const Sidebar = props => {
 
         <br />
         <Link to="/">Home</Link>
-        {/* <Link to="/newarticle">Post Article</Link>
-        <Link>Topics</Link> */}
+        <br />
+        <Link to="/articles/new_article">Post New Article</Link>
+        {/* <Link>Topics</Link> */}
       </section>
     </div>
   );

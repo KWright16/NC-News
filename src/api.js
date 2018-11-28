@@ -24,3 +24,10 @@ export const updateData = async (urlId, value) => {
   const { data } = await axios.put(`${BASE_URL}${urlId}/?vote=${value}`);
   return data;
 };
+export const postArticle = async (topicSlug, articleToAdd) => {
+  const { data } = await axios.post(
+    `${BASE_URL}/topics/${topicSlug}/articles`,
+    articleToAdd
+  );
+  return data;
+};
