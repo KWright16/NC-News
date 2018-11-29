@@ -61,16 +61,12 @@ class Article extends Component {
       .catch(console.log);
   }
 
-  updateVotes = ({ article }) => {
-    this.setState(state => {
-      return { article: { ...state.article, votes: article.votes } };
-    });
-  };
   changeCommentsShowing = () => {
     if (!this.state.commentsShowing) {
       this.setState({ commentsShowing: true });
     }
   };
+
   stopCommentsShowing = () => {
     if (this.state.commentsShowing) {
       this.setState({ commentsShowing: false });

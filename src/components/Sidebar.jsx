@@ -8,18 +8,25 @@ const Sidebar = props => {
       <section>
         {props.user.username ? (
           <div>
-            <p>Logged in as {props.user.username}</p>
-            <Link to="/logout">Logout</Link>
+            <p className="sidebar-text">Logged in as {props.user.username}</p>
+            <Link className="link" to="/logout">
+              <p className="sidebar-text">Logout</p>
+            </Link>
           </div>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link className="link" to="/login">
+            <p className="sidebar-text">Login</p>
+          </Link>
         )}
 
         <br />
-        <Link to="/">Home</Link>
+        <Link className="link" to="/">
+          <p className="sidebar-text">Home</p>
+        </Link>
         <br />
-        <Link to="/articles/new_article">Post New Article</Link>
-        {/* <Link>Topics</Link> */}
+        <Link className="link" to="/articles/new_article">
+          <p className="sidebar-text">Post New Article</p>
+        </Link>
       </section>
     </div>
   );

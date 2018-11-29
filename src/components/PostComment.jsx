@@ -12,12 +12,13 @@ class PostComment extends Component {
   render() {
     const { body, error, created_by } = this.state;
     if (error) return <p>Something went wrong:</p>;
+
     const storedBody = localStorage.getItem("comment");
     if (storedBody && body.length === 0) {
       localStorage.removeItem("comment");
-      console.log(localStorage, "<<<<<>>>>");
       this.setState({ body: JSON.parse(storedBody) });
     }
+
     if (created_by && !this.props.commentsShowing) {
       return (
         <div>
@@ -52,8 +53,8 @@ class PostComment extends Component {
     const { body } = this.state;
     const { user, articleId } = this.props;
     event.preventDefault();
+
     if (!this.props.user.username) {
-      console.log(this.props, "<<<<<");
       const url = { url: `/articles/${this.props.articleId}` };
       localStorage.setItem("url", JSON.stringify(url));
       localStorage.setItem("comment", JSON.stringify(this.state.body));
@@ -63,14 +64,18 @@ class PostComment extends Component {
         body,
         created_by: user._id
       };
+
       api.postComment(articleId, newComment).catch(error => {
         this.setState({ error });
       });
+
       this.setState({
-        created_by: user.username
+        created_by: user.username,
+        body: ""
       });
     }
   };
+
   handleChange = event => {
     const { id, value } = event.target;
     this.setState({

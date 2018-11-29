@@ -15,15 +15,16 @@ class Homepage extends Component {
             .sort((a, b) => b.votes - a.votes)
             .map(article => {
               return (
-                <ul>
-                  <li key={article._id}>
+                <ul key={article._id}>
+                  <li>
                     <Link className="link" to={`/articles/${article._id}`}>
                       <h3 className="article-title">{article.title}</h3>
                     </Link>
-                    <p>By {article.created_by.name}</p>
+                    <p className="by">By {article.created_by.name}</p>
                     <p>
                       Votes {article.votes}, Comments {article.comment_count}
                     </p>
+                    <br />
                   </li>
                 </ul>
               );

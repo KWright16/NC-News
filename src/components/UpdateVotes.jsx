@@ -3,27 +3,49 @@ import React, { Component } from "react";
 import * as api from "../api";
 
 class UpdateVotes extends Component {
+  state = {
+    voteChange: 0,
+    clicked: false,
+    error: null
+  };
   render() {
-    console.log();
+    const { voteChange, error } = this.state;
+    if (error) return <p>Something went wrong</p>;
     return (
       <div>
-        <p>{this.props.votes} votes</p>
-        <button onClick={this.handleClick} value="up">
+        <p>{this.props.votes + voteChange} votes</p>
+        <button
+          onClick={this.handleClick}
+          value="up"
+          disabled={voteChange === 1}
+        >
           Up Vote
         </button>
-        <button onClick={this.handleClick} value="down">
+        <button
+          onClick={this.handleClick}
+          value="down"
+          disabled={voteChange === -1}
+        >
           Down Vote
         </button>
       </div>
     );
   }
   handleClick = event => {
-    const { value } = event.target;
+    let { value } = event.target;
+    const { clicked } = this.state;
     const urlId = this.props.comment
       ? `/comments/${this.props.comment._id}`
       : this.props.urlId;
-    api.updateData(urlId, value).then(article => {
-      this.props.updateVotes(article);
+
+    if (value === "up" && !clicked)
+      this.setState({ voteChange: 1, clicked: true });
+    if (value === "down" && !clicked)
+      this.setState({ voteChange: -1, clicked: true });
+    if (clicked) this.setState({ voteChange: 0, clicked: false });
+
+    api.updateData(urlId, value).catch(error => {
+      this.setState({ error });
     });
   };
 }
