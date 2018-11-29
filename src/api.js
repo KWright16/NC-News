@@ -31,3 +31,14 @@ export const postArticle = async (topicSlug, articleToAdd) => {
   );
   return data;
 };
+export const postComment = async (articleId, commentToAdd) => {
+  const { data } = await axios.post(
+    `${BASE_URL}/articles/${articleId}/comments`,
+    commentToAdd
+  );
+  return data;
+};
+export const deleteComment = async commentId => {
+  const { data } = await axios.delete(`${BASE_URL}/comments/${commentId}`);
+  return data;
+};

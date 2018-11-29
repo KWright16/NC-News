@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import * as api from "../api";
-import Comments from "../components/Comments";
+import Comments from "./Comments";
 import { Link, Router } from "@reach/router";
 import UpdateVotes from "./UpdateVotes";
+import PostComment from "./PostComment";
 
 class Article extends Component {
   state = {
@@ -29,8 +30,13 @@ class Article extends Component {
         <br />
         <Link to={`/articles/${article._id}/comments`}>Show Comments</Link>
         <Router>
-          <Comments article={this.props.article_id} path="/comments" />
+          <Comments
+            article={this.props.article_id}
+            user={this.props.user}
+            path="/comments"
+          />
         </Router>
+        <PostComment articleId={article._id} user={this.props.user} />
       </div>
     );
   }

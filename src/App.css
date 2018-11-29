@@ -1,7 +1,19 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+button {
+  background-color: #eeaa7b;
+  width: 90px;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  border-radius: 0.25rem;
+  border: 0;
+  margin: 0.25rem;
+}
 .App {
   text-align: center;
   display: grid;
-  grid-template: 3fr 1fr 10fr 1fr / 1fr 5fr;
+  grid-template: 5fr 2fr 15fr 1fr / 1fr 6fr;
   height: 100vh;
   grid-template-areas:
     "header header"
@@ -10,8 +22,14 @@
     "footer footer";
 }
 header {
-  border: black 1px solid;
   grid-area: header;
+  background-color: #07889b;
+  color: #fff;
+  font-size: 1.5em;
+}
+.navlink {
+  text-decoration: none;
+  color: #fff;
 }
 .addArticle {
   text-align: left;
@@ -23,6 +41,16 @@ header {
 }
 .by {
   font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.commentFormContainer {
+  margin-right: auto;
+  margin-left: auto;
+  width: 60%;
+}
+.commentTextarea {
+  width: 100%;
+  height: 10vh;
 }
 .faded {
   color: gray;
@@ -36,23 +64,23 @@ header {
   width: 100%;
 }
 .nav {
-  border: black 1px solid;
   grid-area: nav;
-  padding: 2em;
+  padding: 1.5em;
+  background-color: #e37222;
 }
 .navLink {
   display: flex;
   justify-content: space-evenly;
 }
 .sidebar {
-  border: black 1px solid;
   grid-area: sidebar;
   text-align: left;
   padding: 1em;
+  background-color: #66b9bf;
 }
 .main {
-  border: black 1px solid;
   grid-area: main;
+  overflow: auto;
 }
 .textarea {
   width: 100%;
@@ -62,6 +90,6 @@ form {
   padding: 2em;
 }
 footer {
-  border: black 1px solid;
   grid-area: footer;
+  background-color: #bce1e4;
 }

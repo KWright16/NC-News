@@ -8,6 +8,7 @@ import Topic from "./components/Topic";
 import Article from "./components/Article";
 import Login from "./components/Login";
 import PostArticle from "./components/PostArticle";
+import Logout from "./components/Logout";
 
 class App extends Component {
   state = {
@@ -31,8 +32,9 @@ class App extends Component {
         <Router className="main">
           <Homepage path="/" />
           <Login login={this.login} path="/login" />
+          <Logout path="/logout" logout={this.logout} />
           <Topic getTopic={this.getTopic} path="/topic/:slug" />
-          <Article path="/articles/:article_id/*" />
+          <Article user={user} path="/articles/:article_id/*" />
           <PostArticle user={user} path="/articles/new_article" />
           {/*<Topic path="/topics/:topic_slug/articles" /> */}
         </Router>
@@ -47,7 +49,14 @@ class App extends Component {
   getTopic = topic => {
     this.setState({ topic });
   };
-  storeLogin = user => {};
+  logout = () => {
+    localStorage.removeItem("user");
+    if (this.state.user.name) {
+      this.setState({
+        user: {}
+      });
+    }
+  };
 }
 
 export default App;
