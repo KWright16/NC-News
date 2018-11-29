@@ -1,5 +1,6 @@
 body {
   font-family: "Montserrat", sans-serif;
+  color: #454546;
 }
 button {
   background-color: #eeaa7b;
@@ -47,6 +48,14 @@ header {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+}
+.article-title {
+  text-decoration: none;
+  color: rgb(87, 86, 86);
+  transition: all 0.2s ease-in-out;
+}
+.article-title:hover {
+  transform: scale(1.05);
 }
 .by {
   font-style: italic;

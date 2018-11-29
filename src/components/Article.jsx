@@ -18,7 +18,7 @@ class Article extends Component {
 
     return (
       <div>
-        <h1>{article.title}</h1>
+        <h1 className="title">{article.title}</h1>
         <h3 className="by">By {article.created_by.name}</h3>
         <p>{article.comment_count} comments,</p>
         <UpdateVotes
