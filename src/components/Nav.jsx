@@ -14,9 +14,13 @@ class Nav extends Component {
         <nav className="navLink">
           {topics.map(topic => {
             return (
-              <div className="navLink" key={topic.slug}>
-                <Link to={`/topic/${topic.slug}`}>{topic.title}</Link>
-              </div>
+              <ul>
+                <li key={topic.slug}>
+                  <Link className="link" to={`/topic/${topic.slug}`}>
+                    {<h3 className="navLink">{topic.title}</h3>}
+                  </Link>
+                </li>
+              </ul>
             );
           })}
         </nav>

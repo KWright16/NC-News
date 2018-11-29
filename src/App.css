@@ -10,10 +10,13 @@ button {
   border: 0;
   margin: 0.25rem;
 }
+li {
+  list-style: none;
+}
 .App {
   text-align: center;
   display: grid;
-  grid-template: 5fr 2fr 15fr 1fr / 1fr 6fr;
+  grid-template: 2fr 1fr 15fr 1fr / 1fr 6fr;
   height: 100vh;
   grid-template-areas:
     "header header"
@@ -21,15 +24,21 @@ button {
     "sidebar main"
     "footer footer";
 }
+.App-header {
+  line-height: 0.5em;
+}
 header {
   grid-area: header;
   background-color: #07889b;
   color: #fff;
   font-size: 1.5em;
 }
-.navlink {
+
+.navLink {
   text-decoration: none;
   color: #fff;
+  line-height: 0.5em;
+  margin: 0;
 }
 .addArticle {
   text-align: left;
@@ -65,7 +74,6 @@ header {
 }
 .nav {
   grid-area: nav;
-  padding: 1.5em;
   background-color: #e37222;
 }
 .navLink {
@@ -77,6 +85,9 @@ header {
   text-align: left;
   padding: 1em;
   background-color: #66b9bf;
+}
+.link {
+  text-decoration: none;
 }
 .main {
   grid-area: main;

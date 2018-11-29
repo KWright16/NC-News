@@ -17,7 +17,7 @@ class PostComment extends Component {
       this.setState({ body: JSON.parse(storedBody) });
       localStorage.removeItem("comment");
     }
-    if (created_by) {
+    if (created_by && !this.props.commentsShowing) {
       return (
         <div>
           <p className="by">{created_by}</p>

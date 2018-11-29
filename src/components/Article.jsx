@@ -9,10 +9,11 @@ import PostComment from "./PostComment";
 class Article extends Component {
   state = {
     article: {},
-    isLoading: true
+    isLoading: true,
+    commentsShowing: false
   };
   render() {
-    const { article, isLoading } = this.state;
+    const { article, isLoading, commentsShowing } = this.state;
     if (isLoading) return <p>Loading...</p>;
 
     return (
@@ -31,12 +32,17 @@ class Article extends Component {
         <Link to={`/articles/${article._id}/comments`}>Show Comments</Link>
         <Router>
           <Comments
+            changeCommentsShowing={this.changeCommentsShowing}
             article={this.props.article_id}
             user={this.props.user}
             path="/comments"
           />
         </Router>
-        <PostComment articleId={article._id} user={this.props.user} />
+        <PostComment
+          commentsShowing={commentsShowing}
+          articleId={article._id}
+          user={this.props.user}
+        />
       </div>
     );
   }
@@ -56,6 +62,11 @@ class Article extends Component {
     this.setState(state => {
       return { article: { ...state.article, votes: article.votes } };
     });
+  };
+  changeCommentsShowing = () => {
+    if (!this.state.commentsShowing) {
+      this.setState({ commentsShowing: true });
+    }
   };
 }
 

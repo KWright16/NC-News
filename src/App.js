@@ -24,8 +24,8 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>NC News</h1>
+        <header>
+          <h1 className="App-header">NC News</h1>
         </header>
         <Nav />
         <Sidebar user={user} />{" "}

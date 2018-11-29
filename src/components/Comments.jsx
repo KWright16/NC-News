@@ -13,6 +13,7 @@ class Comments extends Component {
     const { comments, isLoading, error } = this.state;
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Something went wrong:</p>;
+    this.props.changeCommentsShowing();
     return (
       <div>
         {comments.map(comment => {

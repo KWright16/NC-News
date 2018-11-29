@@ -12,19 +12,21 @@ class Topic extends Component {
     return (
       <div>
         <ul>
-          {articles.map(article => {
-            return (
-              <div key={article._id}>
-                <Link to={`/articles/${article._id}`}>{article.title}</Link>
-                <p>By {article.created_by.name}</p>
-                <p>
-                  Votes {article.votes}, Comments {article.comment_count}
-                </p>
-                <br />
-                <br />
-              </div>
-            );
-          })}
+          {articles
+            .sort((a, b) => b.votes - a.votes)
+            .map(article => {
+              return (
+                <div key={article._id}>
+                  <Link to={`/articles/${article._id}`}>{article.title}</Link>
+                  <p>By {article.created_by.name}</p>
+                  <p>
+                    Votes {article.votes}, Comments {article.comment_count}
+                  </p>
+                  <br />
+                  <br />
+                </div>
+              );
+            })}
         </ul>
       </div>
     );
