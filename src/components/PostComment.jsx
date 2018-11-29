@@ -14,8 +14,9 @@ class PostComment extends Component {
     if (error) return <p>Something went wrong:</p>;
     const storedBody = localStorage.getItem("comment");
     if (storedBody && body.length === 0) {
-      this.setState({ body: JSON.parse(storedBody) });
       localStorage.removeItem("comment");
+      console.log(localStorage, "<<<<<>>>>");
+      this.setState({ body: JSON.parse(storedBody) });
     }
     if (created_by && !this.props.commentsShowing) {
       return (

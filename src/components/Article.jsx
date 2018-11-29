@@ -2,7 +2,6 @@ import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import * as api from "../api";
 import Comments from "./Comments";
-import { Link, Router } from "@reach/router";
 import UpdateVotes from "./UpdateVotes";
 import PostComment from "./PostComment";
 
@@ -29,15 +28,19 @@ class Article extends Component {
         <p className="articleBody">{article.body}</p>
         <br />
         <br />
-        <Link to={`/articles/${article._id}/comments`}>Show Comments</Link>
-        <Router>
-          <Comments
-            changeCommentsShowing={this.changeCommentsShowing}
-            article={this.props.article_id}
-            user={this.props.user}
-            path="/comments"
-          />
-        </Router>
+        {!commentsShowing ? (
+          <button onClick={this.changeCommentsShowing}>Show Comments</button>
+        ) : (
+          <>
+            <button onClick={this.stopCommentsShowing}>Hide Comments</button>
+            <Comments
+              changeCommentsShowing={this.changeCommentsShowing}
+              article={this.props.article_id}
+              user={this.props.user}
+            />
+          </>
+        )}
+
         <PostComment
           commentsShowing={commentsShowing}
           articleId={article._id}
@@ -66,6 +69,11 @@ class Article extends Component {
   changeCommentsShowing = () => {
     if (!this.state.commentsShowing) {
       this.setState({ commentsShowing: true });
+    }
+  };
+  stopCommentsShowing = () => {
+    if (this.state.commentsShowing) {
+      this.setState({ commentsShowing: false });
     }
   };
 }

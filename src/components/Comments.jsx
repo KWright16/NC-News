@@ -13,7 +13,6 @@ class Comments extends Component {
     const { comments, isLoading, error } = this.state;
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Something went wrong:</p>;
-    this.props.changeCommentsShowing();
     return (
       <div>
         {comments.map(comment => {
@@ -49,14 +48,12 @@ class Comments extends Component {
     }
   }
   fetchComments = () => {
-    api
-      .getData("articles", this.props.article_id, "comments")
-      .then(comments => {
-        this.setState({
-          comments,
-          isLoading: false
-        });
+    api.getData("articles", this.props.article, "comments").then(comments => {
+      this.setState({
+        comments,
+        isLoading: false
       });
+    });
   };
   updateVotes = ({ comment }) => {
     const updatedComments = this.state.comments.map(originalComment => {
