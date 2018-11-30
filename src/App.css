@@ -11,11 +11,17 @@ button {
   border: 0;
   margin: 0.25rem;
 }
+button:hover {
+  -webkit-box-shadow: inset 0px 0px 0px 1px #e37222;
+  -moz-box-shadow: inset 0px 0px 0px 1px #e37222;
+  box-shadow: inset 0px 0px 0px 1px #e37222;
+}
 footer {
   grid-area: footer;
   background-color: #bce1e4;
 }
 form {
+  margin-top: 5%;
   padding: 2em;
   display: block;
 }
@@ -111,6 +117,7 @@ ul {
 .input-box {
   color: #454546;
   padding: 0.25em;
+  background-color: #fff;
 }
 .nav {
   grid-area: nav;
