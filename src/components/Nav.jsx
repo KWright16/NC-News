@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import * as api from "../api";
 
 class Nav extends Component {
@@ -34,11 +33,17 @@ class Nav extends Component {
         this.setState({ topics });
       })
       .catch(err => {
-        console.log(err);
+        const { uri } = this.props;
+        navigate("/error", {
+          replace: true,
+          state: {
+            code: err.response.status,
+            message: err.response.statusText,
+            from: uri
+          }
+        });
       });
   }
 }
-
-// Nav.propTypes = {};
 
 export default Nav;

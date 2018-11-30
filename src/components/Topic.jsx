@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
 import * as api from "../api";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 
 class Topic extends Component {
   state = {
@@ -11,22 +10,22 @@ class Topic extends Component {
     const { articles } = this.state;
     return (
       <div>
-        <ul>
+        <ul className="articles">
           {articles
             .sort((a, b) => b.votes - a.votes)
             .map(article => {
               return (
-                <div key={article._id}>
+                <li className="article-list" key={article._id}>
                   <Link className="link" to={`/articles/${article._id}`}>
                     <h3 className="article-title">{article.title}</h3>
                   </Link>
-                  <p>By {article.created_by.name}</p>
+                  <p className="by">By {article.created_by.name}</p>
                   <p>
                     Votes {article.votes}, Comments {article.comment_count}
                   </p>
                   <br />
                   <br />
-                </div>
+                </li>
               );
             })}
         </ul>
@@ -47,12 +46,18 @@ class Topic extends Component {
       .then(articles => {
         this.setState({ articles });
       })
-      .catch(console.log);
+      .catch(err => {
+        const { uri } = this.props;
+        navigate("/error", {
+          replace: true,
+          state: {
+            code: err.response.status,
+            message: err.response.statusText,
+            from: uri
+          }
+        });
+      });
   };
 }
-
-// Topic.propTypes = {
-//   slug: PropTypes.String.isRequired
-// };
 
 export default Topic;

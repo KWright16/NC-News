@@ -11,8 +11,35 @@ button {
   border: 0;
   margin: 0.25rem;
 }
+footer {
+  grid-area: footer;
+  background-color: #bce1e4;
+}
+form {
+  padding: 2em;
+  display: block;
+}
+header {
+  grid-area: header;
+  background-color: #07889b;
+  color: #fff;
+  font-size: 1.5em;
+}
 li {
   list-style: none;
+}
+ul {
+  padding: 0;
+}
+
+.addArticle {
+  text-align: left;
+}
+.article-list {
+  margin-top: 2%;
+  border: solid 1px #eeaa7b;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 .App {
   text-align: center;
@@ -28,26 +55,13 @@ li {
 .App-header {
   line-height: 0.5em;
 }
-header {
-  grid-area: header;
-  background-color: #07889b;
-  color: #fff;
-  font-size: 1.5em;
-}
-
-.navLink {
-  text-decoration: none;
-  color: #fff;
-  line-height: 0.5em;
-  margin: 0;
-}
-.addArticle {
-  text-align: left;
-}
 .articleBody {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+}
+.articles {
+  margin-top: 5%;
 }
 .article-title {
   text-decoration: none;
@@ -56,6 +70,16 @@ header {
 }
 .article-title:hover {
   transform: scale(1.05);
+}
+.button {
+  background-color: #eeaa7b;
+  padding: 0.5em;
+  color: #000;
+  font-size: 0.75em;
+  border-radius: 0.25rem;
+}
+.button:hover {
+  border: 1px #e37222 solid;
 }
 .by {
   font-style: italic;
@@ -81,20 +105,33 @@ header {
 .inputTitle {
   width: 100%;
 }
+.input {
+  margin-right: 2em;
+}
+.input-box {
+  color: #454546;
+  padding: 0.25em;
+}
 .nav {
   grid-area: nav;
   background-color: #e37222;
+  border-top: #6e6e6e 2px double;
+  border-bottom: #eeaa7b 1px double;
+}
+.navLink {
+  text-decoration: none;
+  color: #fff;
+  line-height: 0.5em;
+  margin: 0;
+}
+.navLink:hover {
+  color: #eeaa7b;
 }
 .navLink {
   display: flex;
   justify-content: space-evenly;
 }
-.sidebar {
-  grid-area: sidebar;
-  text-align: left;
-  padding: 1em;
-  background-color: #66b9bf;
-}
+
 .link {
   text-decoration: none;
 }
@@ -102,17 +139,24 @@ header {
   grid-area: main;
   overflow: auto;
 }
+.sidebar {
+  grid-area: sidebar;
+  text-align: left;
+  padding: 1em;
+  background-color: #66b9bf;
+}
 .sidebar-text {
   color: #fff;
+}
+.sidebar-text:hover {
+  color: #bce1e4;
 }
 .textarea {
   width: 100%;
   height: 30vh;
 }
-form {
-  padding: 2em;
-}
-footer {
-  grid-area: footer;
-  background-color: #bce1e4;
+.user {
+  border-bottom: solid 1px #bce1e4;
+  padding-bottom: 2em;
+  color: #fff;
 }

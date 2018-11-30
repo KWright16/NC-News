@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
 import * as api from "../api";
 import UpdateVotes from "./UpdateVotes";
 
@@ -42,7 +41,7 @@ class Comments extends Component {
   componentDidMount() {
     this.fetchComments();
   }
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.comments !== this.state.comments) {
       this.fetchComments();
     }
@@ -76,7 +75,5 @@ class Comments extends Component {
     this.setState({ isLoading: true });
   };
 }
-
-// Comments.propTypes = {};
 
 export default Comments;

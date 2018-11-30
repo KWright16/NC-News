@@ -1,5 +1,4 @@
 import React from "react";
-// import PropTypes from 'prop-types';
 import { Link } from "@reach/router";
 
 const Logout = props => {
@@ -7,13 +6,11 @@ const Logout = props => {
   return (
     <div>
       <h3>Successfully logged out</h3>
-      <Link to="/">Return to Homepage</Link>
+      <Link className="link button" to="/">
+        Return to Homepage
+      </Link>
     </div>
   );
 };
-
-// Logout.propTypes = {
-
-// };
 
 export default Logout;

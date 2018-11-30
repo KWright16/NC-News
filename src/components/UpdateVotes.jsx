@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import PropTypes from 'prop-types';
 import * as api from "../api";
 
 class UpdateVotes extends Component {
@@ -38,20 +37,22 @@ class UpdateVotes extends Component {
       ? `/comments/${this.props.comment._id}`
       : this.props.urlId;
 
-    if (value === "up" && !clicked)
-      this.setState({ voteChange: 1, clicked: true });
-    if (value === "down" && !clicked)
-      this.setState({ voteChange: -1, clicked: true });
-    if (clicked) this.setState({ voteChange: 0, clicked: false });
+    if (!this.props.comment) {
+      if (value === "up" && !clicked)
+        this.setState({ voteChange: 1, clicked: true });
+      if (value === "down" && !clicked)
+        this.setState({ voteChange: -1, clicked: true });
+      if (clicked) this.setState({ voteChange: 0, clicked: false });
 
-    api.updateData(urlId, value).catch(error => {
-      this.setState({ error });
-    });
+      api.updateData(urlId, value).catch(error => {
+        this.setState({ error });
+      });
+    } else {
+      api.updateData(urlId, value).then(comment => {
+        this.props.updateVotes(comment);
+      });
+    }
   };
 }
-
-// UpdateVotes.propTypes = {
-
-// };
 
 export default UpdateVotes;

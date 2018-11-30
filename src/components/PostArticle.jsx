@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import PropTypes from 'prop-types';
 import * as api from "../api";
 import { Link, navigate } from "@reach/router";
 
@@ -22,7 +21,11 @@ class PostArticle extends Component {
         <div className="formContainer">
           <form className="addArticle" onSubmit={this.handleSubmit}>
             <label htmlFor="topic">Topic: </label>
-            <select id="topic" onChange={this.handleChange}>
+            <select
+              className="input-box"
+              id="topic"
+              onChange={this.handleChange}
+            >
               <option value="" selected={true} disabled>
                 Choose an option
               </option>
@@ -30,10 +33,12 @@ class PostArticle extends Component {
               <option value="football">Football</option>
               <option value="cooking">Cooking</option>
             </select>
+            <br />
+            <br />
             <label htmlFor="title">Article Title: </label>
             <br />
             <input
-              className="inputTitle"
+              className="inputTitle input-box"
               type="text"
               id="title"
               value={title}
@@ -45,7 +50,7 @@ class PostArticle extends Component {
             <br />
             <textarea
               id="body"
-              className="textarea"
+              className="textarea input-box"
               value={body}
               onChange={this.handleChange}
             />
@@ -77,13 +82,18 @@ class PostArticle extends Component {
       created_by: user._id
     };
 
-    api.postArticle(topic, newArticle).catch(error => {
-      this.setState({ error });
-    });
-    this.setState({
-      created_by: user.name
-    });
+    api
+      .postArticle(topic, newArticle)
+      .then(() => {
+        this.setState({
+          created_by: user.name
+        });
+      })
+      .catch(error => {
+        this.setState({ error, created_by: user.name });
+      });
   };
+
   handleChange = event => {
     const { id, value } = event.target;
     this.setState({
@@ -91,9 +101,5 @@ class PostArticle extends Component {
     });
   };
 }
-
-// PostArticle.propTypes = {
-
-// };
 
 export default PostArticle;

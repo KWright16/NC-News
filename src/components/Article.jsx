@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
 import * as api from "../api";
 import Comments from "./Comments";
 import UpdateVotes from "./UpdateVotes";
 import PostComment from "./PostComment";
+import { navigate } from "@reach/router";
 
 class Article extends Component {
   state = {
@@ -20,11 +20,7 @@ class Article extends Component {
         <h1 className="title">{article.title}</h1>
         <h3 className="by">By {article.created_by.name}</h3>
         <p>{article.comment_count} comments,</p>
-        <UpdateVotes
-          updateVotes={this.updateVotes}
-          urlId={this.props.uri}
-          votes={article.votes}
-        />
+        <UpdateVotes urlId={this.props.uri} votes={article.votes} />
         <p className="articleBody">{article.body}</p>
         <br />
         <br />
@@ -58,7 +54,17 @@ class Article extends Component {
           isLoading: false
         });
       })
-      .catch(console.log);
+      .catch(err => {
+        const { uri } = this.props;
+        navigate("/error", {
+          replace: true,
+          state: {
+            code: err.response.status,
+            message: err.response.statusText,
+            from: uri
+          }
+        });
+      });
   }
 
   changeCommentsShowing = () => {
@@ -67,15 +73,12 @@ class Article extends Component {
     }
   };
 
-  stopCommentsShowing = () => {
+  stopCommentsShowing = event => {
+    event.preventDefault();
     if (this.state.commentsShowing) {
       this.setState({ commentsShowing: false });
     }
   };
 }
-
-// Article.propTypes = {
-//   article_id: PropTypes.string.isRequired
-// };
 
 export default Article;

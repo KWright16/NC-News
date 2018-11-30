@@ -1,5 +1,4 @@
 import React from "react";
-// import PropTypes from "prop-types";
 import { Link } from "@reach/router";
 
 const Sidebar = props => {
@@ -8,7 +7,7 @@ const Sidebar = props => {
       <section>
         {props.user.username ? (
           <div>
-            <p className="sidebar-text">Logged in as {props.user.username}</p>
+            <p className="user">Logged in as {props.user.username}</p>
             <Link className="link" to="/logout">
               <p className="sidebar-text">Logout</p>
             </Link>
@@ -31,7 +30,5 @@ const Sidebar = props => {
     </div>
   );
 };
-
-// Sidebar.propTypes = {};
 
 export default Sidebar;

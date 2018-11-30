@@ -9,6 +9,8 @@ import Article from "./components/Article";
 import Login from "./components/Login";
 import PostArticle from "./components/PostArticle";
 import Logout from "./components/Logout";
+import BadRequest from "./components/BadRequest";
+import NotFound from "./components/NotFound";
 
 class App extends Component {
   state = {
@@ -18,10 +20,7 @@ class App extends Component {
 
   render() {
     const { user } = this.state;
-    const storedUser = localStorage.getItem("user");
-    if (storedUser && !user.name) {
-      this.setState({ user: JSON.parse(storedUser) });
-    }
+
     return (
       <div className="App">
         <header>
@@ -36,11 +35,19 @@ class App extends Component {
           <Topic getTopic={this.getTopic} path="/topic/:slug" />
           <Article user={user} path="/articles/:article_id/*" />
           <PostArticle user={user} path="/articles/new_article" />
-          {/*<Topic path="/topics/:topic_slug/articles" /> */}
+          <NotFound default />
+          <BadRequest path="/error" />
         </Router>
         <footer />
       </div>
     );
+  }
+  componentDidMount() {
+    const { user } = this.state;
+    const storedUser = localStorage.getItem("user");
+    if (storedUser && !user.name) {
+      this.setState({ user: JSON.parse(storedUser) });
+    }
   }
   login = user => {
     this.setState({ user });

@@ -20,13 +20,18 @@ class Login extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
+          <label className="input" htmlFor="username">
+            Username
+          </label>
+
           <input
+            className="input-box"
             id="username"
             type="text"
             value={username}
             onChange={this.handleChange}
           />
+          <br />
           <button>Submit</button>
         </form>
       </div>
@@ -42,12 +47,25 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api.getUsers(this.state.username).then(user => {
-      this.props.login(user);
-      this.setState({
-        loggedIn: true
+    api
+      .getUsers(this.state.username)
+      .then(user => {
+        this.props.login(user);
+        this.setState({
+          loggedIn: true
+        });
+      })
+      .catch(err => {
+        const { uri } = this.props;
+        navigate("/error", {
+          replace: true,
+          state: {
+            code: err.response.status,
+            message: err.response.statusText,
+            from: uri
+          }
+        });
       });
-    });
   };
 }
 
