@@ -138,7 +138,51 @@ ul {
   display: flex;
   justify-content: space-evenly;
 }
+.menu-opener {
+  display: none;
+}
+@media all and (max-width: 470px) {
+  .App {
+    text-align: center;
+    display: grid;
+    grid-template: 2fr 1fr 1fr 15fr 1fr / 1fr 6fr;
+    height: 100vh;
+    grid-template-areas:
+      "header header"
+      "nav nav"
+      "menu main"
+      "sidebar main"
+      "footer footer";
+  }
+  /* .menu-opener {
+    display: block;
+  } */
+  .article-list {
+    border: none;
+  }
+  .main {
+    padding-right: 15%;
+  }
+  #nav-toggle ~ label {
+    display: grid;
+    grid-area: menu;
+    background-color: #66b9bf;
+    color: #fff;
+    padding: 0.5em;
+  }
 
+  #nav-toggle ~ .sidebar {
+    display: none;
+  }
+
+  #nav-toggle:checked ~ .sidebar {
+    display: block;
+  }
+  #nav-toggle ~ .sidebar,
+  #nav-toggle ~ label {
+    transition: 1s transform;
+  }
+}
 .link {
   text-decoration: none;
 }
