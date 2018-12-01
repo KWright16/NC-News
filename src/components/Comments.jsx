@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
 import UpdateVotes from "./UpdateVotes";
+import PostComment from "./PostComment";
 
 class Comments extends Component {
   state = {
@@ -35,16 +36,12 @@ class Comments extends Component {
             </div>
           );
         })}
+        <PostComment articleId={this.props.article} user={this.props.user} />
       </div>
     );
   }
   componentDidMount() {
     this.fetchComments();
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.comments !== this.state.comments) {
-      this.fetchComments();
-    }
   }
   fetchComments = () => {
     api.getData("articles", this.props.article, "comments").then(comments => {
@@ -69,10 +66,15 @@ class Comments extends Component {
   deleteComment = event => {
     const { value } = event.target;
     event.preventDefault();
-    api.deleteComment(value).catch(error => {
-      this.setState({ error });
-    });
-    this.setState({ isLoading: true });
+    api
+      .deleteComment(value)
+      .then(() => {
+        this.setState({ isLoading: true });
+        this.fetchComments();
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
   };
 }
 

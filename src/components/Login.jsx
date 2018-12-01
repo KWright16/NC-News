@@ -40,7 +40,7 @@ class Login extends Component {
   }
 
   handleChange = event => {
-    const { id, value } = event.target; // check these with console logs
+    const { id, value } = event.target;
     this.setState({
       [id]: value
     });

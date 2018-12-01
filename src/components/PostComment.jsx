@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
 import { navigate } from "@reach/router";
+import CommentForm from "./CommentForm";
 
 class PostComment extends Component {
   state = {
@@ -9,36 +10,31 @@ class PostComment extends Component {
     comment: {}
   };
   render() {
-    const { body, error, comment } = this.state;
+    const { error, comment } = this.state;
+
     if (error) return <p>Something went wrong:</p>;
 
-    if (comment.body && !this.props.commentsShowing) {
+    if (comment.body) {
       return (
         <div>
           <p className="by">{comment.created_by.username}</p>
           <p>{comment.body}</p>
           <p>0 votes</p>
           <p className="faded">Just now</p>
-          <br />
-          <br />
+          <CommentForm
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            body={this.state.body}
+          />
         </div>
       );
     }
     return (
-      <div className="commentFormContainer">
-        <form className="addArticle" onSubmit={this.handleSubmit}>
-          <label htmlFor="body">Add Comment: </label>
-          <br />
-          <textarea
-            id="body"
-            className="commentTextarea input-box"
-            value={body}
-            onChange={this.handleChange}
-          />
-          <br />
-          <button>Post Comment</button>
-        </form>
-      </div>
+      <CommentForm
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        body={this.state.body}
+      />
     );
   }
 
