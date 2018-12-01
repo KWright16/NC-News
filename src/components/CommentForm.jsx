@@ -5,6 +5,7 @@ const CommentForm = props => {
   return (
     <div className="commentFormContainer">
       <form className="addArticle form" onSubmit={props.handleSubmit}>
+        <p className="blank">{props.message}</p>
         <label htmlFor="body">Add Comment: </label>
         <br />
         <textarea
