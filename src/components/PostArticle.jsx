@@ -19,7 +19,7 @@ class PostArticle extends Component {
     if (!created_by) {
       return (
         <div className="formContainer">
-          <form className="addArticle" onSubmit={this.handleSubmit}>
+          <form className="addArticle form" onSubmit={this.handleSubmit}>
             <label htmlFor="topic">Topic: </label>
             <select
               className="input-box"

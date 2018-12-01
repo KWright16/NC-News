@@ -18,7 +18,9 @@ class Login extends Component {
     }
     if (loggedIn) return <h2>Welcome back {username}</h2>;
     return (
-      <div>
+      <div className="form">
+        <p>Login to post or delete articles and comments</p>
+        <br />
         <form onSubmit={this.handleSubmit}>
           <label className="input" htmlFor="username">
             Username
