@@ -6,6 +6,8 @@ const Logout = props => {
   return (
     <div>
       <h3>Successfully logged out</h3>
+      <p>Login to post or delete articles and comments</p>
+      <br />
       <Link className="link button" to="/">
         Return to Homepage
       </Link>

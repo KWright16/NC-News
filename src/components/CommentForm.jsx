@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 const CommentForm = props => {
   return (
     <div className="commentFormContainer">
-      <form className="addArticle" onSubmit={props.handleSubmit}>
+      <form className="addArticle form" onSubmit={props.handleSubmit}>
+        <p className="blank">{props.message}</p>
         <label htmlFor="body">Add Comment: </label>
         <br />
         <textarea

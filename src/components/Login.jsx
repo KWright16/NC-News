@@ -6,10 +6,17 @@ import { navigate } from "@reach/router";
 class Login extends Component {
   state = {
     username: "jessjelly",
-    loggedIn: false
+    loggedIn: false,
+    blank: false,
+    error: false
   };
   render() {
-    const { username, loggedIn } = this.state;
+    const { username, loggedIn, blank, error } = this.state;
+    const message = blank
+      ? "Username is required"
+      : error
+      ? "No matching username"
+      : "Login to post or delete articles and comments";
     let url = localStorage.getItem("url");
     if (loggedIn && url) {
       url = JSON.parse(url);
@@ -18,14 +25,16 @@ class Login extends Component {
     }
     if (loggedIn) return <h2>Welcome back {username}</h2>;
     return (
-      <div>
+      <div className="form">
+        <p className={blank || error ? "blank" : ""}>{message}</p>
+        <br />
         <form onSubmit={this.handleSubmit}>
           <label className="input" htmlFor="username">
             Username
           </label>
 
           <input
-            className="input-box"
+            className={blank ? "input-box not-completed" : "input-box"}
             id="username"
             type="text"
             value={username}
@@ -47,26 +56,24 @@ class Login extends Component {
   };
 
   handleSubmit = event => {
+    const { username } = this.state;
     event.preventDefault();
-    api
-      .getUsers(this.state.username)
-      .then(user => {
-        this.props.login(user);
-        this.setState({
-          loggedIn: true
+
+    if (username.length === 0) {
+      this.setState({ blank: true });
+    } else {
+      api
+        .getUsers(this.state.username)
+        .then(user => {
+          this.props.login(user);
+          this.setState({
+            loggedIn: true
+          });
+        })
+        .catch(err => {
+          this.setState({ blank: false, error: true });
         });
-      })
-      .catch(err => {
-        const { uri } = this.props;
-        navigate("/error", {
-          replace: true,
-          state: {
-            code: err.response.status,
-            message: err.response.statusText,
-            from: uri
-          }
-        });
-      });
+    }
   };
 }
 

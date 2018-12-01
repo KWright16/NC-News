@@ -7,11 +7,13 @@ class PostComment extends Component {
   state = {
     body: "",
     error: null,
-    comment: {}
+    comment: {},
+    blank: false
   };
   render() {
-    const { error, comment } = this.state;
+    const { error, comment, blank } = this.state;
 
+    const message = blank ? "Enter a comment before submitting" : "";
     if (error) return <p>Something went wrong:</p>;
 
     if (comment.body) {
@@ -31,6 +33,7 @@ class PostComment extends Component {
     }
     return (
       <CommentForm
+        message={message}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         body={this.state.body}
@@ -52,15 +55,18 @@ class PostComment extends Component {
     const { user, articleId } = this.props;
     event.preventDefault();
 
-    if (!this.props.user.username) {
-      const url = { url: `/articles/${this.props.articleId}` };
+    if (!user.username) {
+      const url = { url: `/articles/${articleId}` };
       localStorage.setItem("url", JSON.stringify(url));
-      localStorage.setItem("comment", JSON.stringify(this.state.body));
+      localStorage.setItem("comment", JSON.stringify(body));
       navigate("/login");
+    } else if (body.length === 0) {
+      this.setState({ blank: true });
     } else {
       const newComment = {
         body,
-        created_by: user._id
+        created_by: user._id,
+        blank: false
       };
 
       api
