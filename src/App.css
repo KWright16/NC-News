@@ -15,6 +15,7 @@ button:hover {
   -webkit-box-shadow: inset 0px 0px 0px 1px #e37222;
   -moz-box-shadow: inset 0px 0px 0px 1px #e37222;
   box-shadow: inset 0px 0px 0px 1px #e37222;
+  transform: scale(1.05);
 }
 footer {
   grid-area: footer;

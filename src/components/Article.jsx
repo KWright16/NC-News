@@ -25,7 +25,10 @@ class Article extends Component {
         <br />
         <br />
         {!commentsShowing ? (
-          <button onClick={this.changeCommentsShowing}>Show Comments</button>
+          <>
+            <button onClick={this.changeCommentsShowing}>Show Comments</button>
+            <PostComment articleId={article._id} user={this.props.user} />
+          </>
         ) : (
           <>
             <button onClick={this.stopCommentsShowing}>Hide Comments</button>
@@ -36,12 +39,6 @@ class Article extends Component {
             />
           </>
         )}
-
-        <PostComment
-          commentsShowing={commentsShowing}
-          articleId={article._id}
-          user={this.props.user}
-        />
       </div>
     );
   }
