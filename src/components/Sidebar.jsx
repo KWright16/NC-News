@@ -9,7 +9,7 @@ const Sidebar = props => {
         Menu
       </label>
       <nav className="sidebar">
-        <section class="nav-list">
+        <section>
           {props.user.username ? (
             <div>
               <p className="user">Logged in as {props.user.username}</p>
