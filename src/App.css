@@ -74,6 +74,9 @@ ul {
 .article-title:hover {
   transform: scale(1.05);
 }
+.blank {
+  color: rgb(238, 63, 63);
+}
 .button {
   background-color: #eeaa7b;
   padding: 0.5em;
@@ -140,6 +143,9 @@ ul {
 .navLink {
   display: flex;
   justify-content: space-evenly;
+}
+.not-completed {
+  border: solid 1px rgb(223, 35, 35);
 }
 .menu-opener {
   display: none;
