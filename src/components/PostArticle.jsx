@@ -25,8 +25,9 @@ class PostArticle extends Component {
               className="input-box"
               id="topic"
               onChange={this.handleChange}
+              defaultValue="choose"
             >
-              <option value="" selected={true} disabled>
+              <option value="choose" disabled>
                 Choose an option
               </option>
               <option value="coding">Coding</option>
