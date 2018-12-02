@@ -5,10 +5,12 @@ import PropTypes from "prop-types";
 
 class Topic extends Component {
   state = {
-    articles: []
+    articles: [],
+    isLoading: true
   };
   render() {
-    const { articles } = this.state;
+    const { articles, isLoading } = this.state;
+    if (isLoading) return <div class="loader">Loading...</div>;
     return (
       <div>
         <ul className="articles">
@@ -45,7 +47,10 @@ class Topic extends Component {
     api
       .getData("topics", this.props.slug, "articles")
       .then(articles => {
-        this.setState({ articles });
+        this.setState({
+          articles,
+          isLoading: false
+        });
       })
       .catch(err => {
         const { uri } = this.props;

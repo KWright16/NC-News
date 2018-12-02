@@ -12,7 +12,7 @@ class Comments extends Component {
   };
   render() {
     const { comments, isLoading, error } = this.state;
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <div class="loader">Loading...</div>;
     if (error) return <p>Something went wrong:</p>;
     return (
       <div>

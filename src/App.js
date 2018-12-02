@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./spinner.css";
 import Nav from "./components/Nav";
 import { Router } from "@reach/router";
-import Homepage from "./components/Homepage";
+import Articles from "./components/Articles";
 import Sidebar from "./components/Sidebar";
 import Topic from "./components/Topic";
 import Article from "./components/Article";
@@ -29,7 +30,7 @@ class App extends Component {
         <Nav />
         <Sidebar user={user} />{" "}
         <Router className="main">
-          <Homepage path="/" />
+          <Articles path="/" />
           <Login login={this.login} path="/login" />
           <Logout path="/logout" logout={this.logout} />
           <Topic path="/topic/:slug" />
