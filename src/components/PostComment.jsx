@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../api";
 import { navigate } from "@reach/router";
 import CommentForm from "./CommentForm";
+import PropTypes from "prop-types";
 
 class PostComment extends Component {
   state = {
@@ -93,5 +94,10 @@ class PostComment extends Component {
     });
   };
 }
+
+PostComment.propTypes = {
+  articleId: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired
+};
 
 export default PostComment;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
 import { Link, navigate } from "@reach/router";
+import PropTypes from "prop-types";
 
 class Homepage extends Component {
   state = {
@@ -31,7 +32,7 @@ class Homepage extends Component {
   }
   componentDidMount() {
     api
-      .getData("articles")
+      .getAllData("articles")
       .then(({ articles }) => {
         this.setState({ articles });
       })
@@ -48,5 +49,9 @@ class Homepage extends Component {
       });
   }
 }
+
+Homepage.propTypes = {
+  uri: PropTypes.string
+};
 
 export default Homepage;

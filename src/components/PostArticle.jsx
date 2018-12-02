@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
 import { Link, navigate } from "@reach/router";
+import PropTypes from "prop-types";
 
 class PostArticle extends Component {
   state = {
@@ -10,21 +11,9 @@ class PostArticle extends Component {
     created_by: "",
     error: null,
     blank: null
-    // clicked: {
-    //   title: false,
-    //   body: false,
-    //   topic: false
-    // }
   };
   render() {
     const { title, body, error, created_by, blank } = this.state;
-    // const errors = this.validate(title, body, topic);
-    // const isEnabled = !Object.keys(errors).some(x => errors[x]);
-    // const shouldMarkError = (field) => {
-    // const hasError = errors[field];
-    // const shouldShow = this.state.touched[field];
-    // return hasError ? shouldShow : false;
-    // };
     if (!this.props.user.name) {
       navigate("/login");
     }
@@ -42,7 +31,6 @@ class PostArticle extends Component {
               }
               id="topic"
               onChange={this.handleChange}
-              // onBlur={this.handleBlur("topic")}
               defaultValue="choose"
             >
               <option value="choose" disabled>
@@ -67,7 +55,6 @@ class PostArticle extends Component {
               id="title"
               value={title}
               onChange={this.handleChange}
-              // onBlur={this.handleBlur("title")}
             />
             <br />
 
@@ -82,7 +69,6 @@ class PostArticle extends Component {
               }
               value={body}
               onChange={this.handleChange}
-              // onBlur={this.handleBlur("body")}
             />
             <br />
             <button>Post Article</button>
@@ -141,12 +127,6 @@ class PostArticle extends Component {
     });
   };
 
-  // handleBlur = field => event => {
-  //   // console.log(");
-  //   this.setState({
-  //     clicked: { ...this.state.clicked, [field]: true }
-  //   });
-  // };
   validate = (topic, title, body) => {
     return {
       topic: topic.length === 0,
@@ -155,5 +135,9 @@ class PostArticle extends Component {
     };
   };
 }
+
+PostArticle.propTypes = {
+  user: PropTypes.object.isRequired
+};
 
 export default PostArticle;

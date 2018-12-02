@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
 import { Link, navigate } from "@reach/router";
+import PropTypes from "prop-types";
 
 class Topic extends Component {
   state = {
@@ -59,5 +60,10 @@ class Topic extends Component {
       });
   };
 }
+
+Topic.propTypes = {
+  slug: PropTypes.string,
+  uri: PropTypes.string
+};
 
 export default Topic;

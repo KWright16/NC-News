@@ -32,7 +32,7 @@ class App extends Component {
           <Homepage path="/" />
           <Login login={this.login} path="/login" />
           <Logout path="/logout" logout={this.logout} />
-          <Topic getTopic={this.getTopic} path="/topic/:slug" />
+          <Topic path="/topic/:slug" />
           <Article user={user} path="/articles/:article_id/*" />
           <PostArticle user={user} path="/articles/new_article" />
           <NotFound default />
@@ -53,9 +53,7 @@ class App extends Component {
     this.setState({ user });
     localStorage.setItem("user", JSON.stringify(this.state.user));
   };
-  getTopic = topic => {
-    this.setState({ topic });
-  };
+
   logout = () => {
     localStorage.removeItem("user");
     if (this.state.user.name) {
