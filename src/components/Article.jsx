@@ -4,6 +4,7 @@ import Comments from "./Comments";
 import UpdateVotes from "./UpdateVotes";
 import PostComment from "./PostComment";
 import { navigate } from "@reach/router";
+import PropTypes from "prop-types";
 
 class Article extends Component {
   state = {
@@ -32,11 +33,7 @@ class Article extends Component {
         ) : (
           <>
             <button onClick={this.stopCommentsShowing}>Hide Comments</button>
-            <Comments
-              changeCommentsShowing={this.changeCommentsShowing}
-              article={this.props.article_id}
-              user={this.props.user}
-            />
+            <Comments article={this.props.article_id} user={this.props.user} />
           </>
         )}
       </div>
@@ -77,5 +74,11 @@ class Article extends Component {
     }
   };
 }
+
+Article.propTypes = {
+  uri: PropTypes.string,
+  article_id: PropTypes.string,
+  user: PropTypes.object.isRequired
+};
 
 export default Article;

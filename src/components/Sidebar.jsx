@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import PropTypes from "prop-types";
 
 const Sidebar = props => {
   return (
@@ -35,6 +36,10 @@ const Sidebar = props => {
       </nav>
     </>
   );
+};
+
+Sidebar.propTypes = {
+  user: PropTypes.object.isRequired
 };
 
 export default Sidebar;

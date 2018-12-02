@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../api";
 import UpdateVotes from "./UpdateVotes";
 import PostComment from "./PostComment";
+import PropTypes from "prop-types";
 
 class Comments extends Component {
   state = {
@@ -21,11 +22,7 @@ class Comments extends Component {
               <p className="by">{comment.created_by.username}</p>
               <p>{comment.body}</p>
               <p className="faded">{comment.created_at.split("T")[0]}</p>
-              <UpdateVotes
-                updateVotes={this.updateVotes}
-                comment={comment}
-                votes={comment.votes}
-              />
+              <UpdateVotes comment={comment} votes={comment.votes} />
               {this.props.user.username === comment.created_by.username ? (
                 <button value={comment._id} onClick={this.deleteComment}>
                   Delete
@@ -51,18 +48,7 @@ class Comments extends Component {
       });
     });
   };
-  updateVotes = ({ comment }) => {
-    const updatedComments = this.state.comments.map(originalComment => {
-      if (comment._id === originalComment._id) {
-        return { ...originalComment, votes: comment.votes };
-      } else {
-        return originalComment;
-      }
-    });
-    this.setState(state => {
-      return { comments: updatedComments };
-    });
-  };
+
   deleteComment = event => {
     const { value } = event.target;
     event.preventDefault();
@@ -77,5 +63,10 @@ class Comments extends Component {
       });
   };
 }
+
+Comments.propTypes = {
+  article: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired
+};
 
 export default Comments;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import PropTypes from "prop-types";
 
 const Logout = props => {
   props.logout();
@@ -13,6 +14,9 @@ const Logout = props => {
       </Link>
     </div>
   );
+};
+Logout.propTypes = {
+  logout: PropTypes.func.isRequired
 };
 
 export default Logout;

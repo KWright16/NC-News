@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../api";
+import PropTypes from "prop-types";
 
 class UpdateVotes extends Component {
   state = {
@@ -52,5 +53,10 @@ class UpdateVotes extends Component {
     });
   };
 }
+
+UpdateVotes.propTypes = {
+  urlId: PropTypes.string,
+  votes: PropTypes.number.isRequired
+};
 
 export default UpdateVotes;

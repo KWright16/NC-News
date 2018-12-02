@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api";
 import { Link, navigate } from "@reach/router";
+import PropTypes from "prop-types";
 
 class PostArticle extends Component {
   state = {
@@ -134,5 +135,9 @@ class PostArticle extends Component {
     };
   };
 }
+
+PostArticle.propTypes = {
+  user: PropTypes.object.isRequired
+};
 
 export default PostArticle;

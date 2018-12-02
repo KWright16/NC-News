@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, navigate } from "@reach/router";
 import * as api from "../api";
+import PropTypes from "prop-types";
 
 class Nav extends Component {
   state = {
@@ -45,5 +46,8 @@ class Nav extends Component {
       });
   }
 }
+Nav.propTypes = {
+  uri: PropTypes.string
+};
 
 export default Nav;
