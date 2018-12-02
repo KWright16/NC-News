@@ -14,7 +14,7 @@ class Article extends Component {
   };
   render() {
     const { article, isLoading, commentsShowing } = this.state;
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <div class="loader">Loading...</div>;
 
     return (
       <div>

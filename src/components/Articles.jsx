@@ -3,12 +3,14 @@ import * as api from "../api";
 import { Link, navigate } from "@reach/router";
 import PropTypes from "prop-types";
 
-class Homepage extends Component {
+class Articles extends Component {
   state = {
-    articles: []
+    articles: [],
+    isLoading: true
   };
   render() {
-    const { articles } = this.state;
+    const { articles, isLoading } = this.state;
+    if (isLoading) return <div class="loader">Loading...</div>;
     return (
       <ul className="articles">
         {articles
@@ -34,7 +36,7 @@ class Homepage extends Component {
     api
       .getAllData("articles")
       .then(({ articles }) => {
-        this.setState({ articles });
+        this.setState({ articles, isLoading: false });
       })
       .catch(err => {
         const { uri } = this.props;
@@ -50,8 +52,8 @@ class Homepage extends Component {
   }
 }
 
-Homepage.propTypes = {
+Articles.propTypes = {
   uri: PropTypes.string
 };
 
-export default Homepage;
+export default Articles;

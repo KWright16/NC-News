@@ -64,7 +64,7 @@ class Login extends Component {
     } else {
       api
         .getSingleDatum("users", this.state.username)
-        .then(user => {
+        .then(({ user }) => {
           this.props.login(user);
           this.setState({
             loggedIn: true
