@@ -10,7 +10,7 @@ class Articles extends Component {
   };
   render() {
     const { articles, isLoading } = this.state;
-    if (isLoading) return <div class="loader">Loading...</div>;
+    if (isLoading) return <div className="loader">Loading...</div>;
     return (
       <ul className="articles">
         {articles

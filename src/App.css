@@ -155,21 +155,24 @@ ul {
   }
 }
 @media all and (max-width: 470px) {
-  .App {
-    text-align: center;
-    display: grid;
-    grid-template: 2fr 1fr 1fr 15fr 1fr / 1fr 6fr;
-    height: 100vh;
-    grid-template-areas:
-      "header header"
-      "nav nav"
-      "menu main"
-      "sidebar main"
-      "footer footer";
+  footer {
+    display: none;
   }
-  /* .menu-opener {
+  .App {
+    grid-template: 2fr 1fr 1fr 15fr / 1fr;
+    grid-template-areas:
+      "header"
+      "nav"
+      "menu"
+      "main";
+  }
+  label {
     display: block;
-  } */
+    width: 2rem;
+    padding-top: 1rem;
+    z-index: 2;
+    border-radius: 3px;
+  }
   .article-list {
     border: none;
   }
@@ -181,9 +184,6 @@ ul {
     width: 90%;
   }
 
-  /* .main {
-    padding-right: 15%;
-  } */
   #nav-toggle ~ label {
     display: grid;
     grid-area: menu;
@@ -191,13 +191,35 @@ ul {
     color: #fff;
     padding: 0.5em;
   }
+  .login {
+    margin-top: 5rem;
+  }
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    height: 100%;
+    margin-top: 5%;
+    width: 150px;
+  }
+
+  .user {
+    padding-top: 3rem;
+  }
 
   #nav-toggle ~ .sidebar {
-    display: none;
+    left: -182px;
   }
 
   #nav-toggle:checked ~ .sidebar {
-    display: block;
+    transform: translate(182px, 0);
+    animation-timing-function: 0.7s ease-in;
+  }
+  #nav-toggle:checked ~ label {
+    position: absolute;
+    top: 0;
+    padding-top: 2em;
+    padding: 0.5em;
+    z-index: 1;
   }
   #nav-toggle ~ .sidebar,
   #nav-toggle ~ label {
