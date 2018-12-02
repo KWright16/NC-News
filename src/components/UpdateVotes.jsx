@@ -33,25 +33,23 @@ class UpdateVotes extends Component {
   handleClick = event => {
     let { value } = event.target;
     const { clicked } = this.state;
+    let change = {};
     const urlId = this.props.comment
       ? `/comments/${this.props.comment._id}`
       : this.props.urlId;
 
-    if (!this.props.comment) {
-      if (value === "up" && !clicked)
-        this.setState({ voteChange: 1, clicked: true });
-      if (value === "down" && !clicked)
-        this.setState({ voteChange: -1, clicked: true });
-      if (clicked) this.setState({ voteChange: 0, clicked: false });
+    if (!clicked)
+      change =
+        value === "down"
+          ? { voteChange: -1, clicked: true }
+          : { voteChange: 1, clicked: true };
+    if (clicked) change = { voteChange: 0, clicked: false };
 
-      api.updateData(urlId, value).catch(error => {
-        this.setState({ error });
-      });
-    } else {
-      api.updateData(urlId, value).then(comment => {
-        this.props.updateVotes(comment);
-      });
-    }
+    this.setState(change);
+
+    api.updateData(urlId, value).catch(error => {
+      this.setState({ error });
+    });
   };
 }
 
