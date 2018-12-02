@@ -7,7 +7,7 @@ const Sidebar = props => {
     <>
       <input className="menu-opener" type="checkbox" id="nav-toggle" />
       <label className="menu-opener" htmlFor="nav-toggle">
-        Menu
+        ☰
       </label>
       <nav className="sidebar">
         <section>
@@ -20,7 +20,7 @@ const Sidebar = props => {
             </div>
           ) : (
             <Link className="link" to="/login">
-              <p className="sidebar-text">Login</p>
+              <p className="sidebar-text login">Login</p>
             </Link>
           )}
 

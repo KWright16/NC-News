@@ -1,4 +1,36 @@
+## NC News
+
+## Front End
+
+NC News is a news website optimised for web and mobile that allows the user to browse news articles and vote them up or down. There is additional functionality for users that are logged in. Users can add articles and make comments about their own or others articles. They can also delete their own comments.
+
+If users are not signed in they will be redirected to a login but any comments they have made will be saved so that their work is not lost. Voting is limited and form validation is used to limit bad requests.
+
+The site makes use of optimism for a faster user experience.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+### Back End
+
+The back end utilises MongoDB and mongoose alongside and express server. End points are provided for get, post, put and delete requests.
+
+## Hosting
+
+The the site is hosted on netlify at https://sleepy-golick-571fca.netlify.com/
+
+The back end can be found on heroku at https://young-savannah-18120.herokuapp.com/api
+
+## Versions
+
+```
+    reach/router 1.2.1,
+    axios 0.18.0,
+    react 16.6.3,
+    react-dom 16.6.3,
+    react-popup 0.9.3,
+    react-scripts 2.1.1
+
+```
 
 ## Available Scripts
 
@@ -16,29 +48,3 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

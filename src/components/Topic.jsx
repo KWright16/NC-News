@@ -10,7 +10,7 @@ class Topic extends Component {
   };
   render() {
     const { articles, isLoading } = this.state;
-    if (isLoading) return <div class="loader">Loading...</div>;
+    if (isLoading) return <div className="loader">Loading...</div>;
     return (
       <div>
         <ul className="articles">
