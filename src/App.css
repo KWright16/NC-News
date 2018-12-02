@@ -107,7 +107,6 @@ ul {
   margin-top: 5%;
   padding: 2em;
   display: block;
-  min-width: 70%;
 }
 .formContainer {
   margin-right: auto;
@@ -150,6 +149,11 @@ ul {
 .menu-opener {
   display: none;
 }
+@media all and (max-width: 700px) {
+  .formContainer {
+    width: 65%;
+  }
+}
 @media all and (max-width: 470px) {
   .App {
     text-align: center;
@@ -170,9 +174,16 @@ ul {
     border: none;
   }
 
-  .main {
-    padding-right: 15%;
+  .formContainer {
+    width: 90%;
   }
+  .commentFormContainer {
+    width: 90%;
+  }
+
+  /* .main {
+    padding-right: 15%;
+  } */
   #nav-toggle ~ label {
     display: grid;
     grid-area: menu;
