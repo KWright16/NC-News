@@ -29,7 +29,7 @@ class Nav extends Component {
   }
   componentDidMount() {
     api
-      .getData("topics")
+      .getAllData("topics")
       .then(({ topics }) => {
         this.setState({ topics });
       })

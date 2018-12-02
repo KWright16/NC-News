@@ -32,7 +32,7 @@ class Homepage extends Component {
   }
   componentDidMount() {
     api
-      .getData("articles")
+      .getAllData("articles")
       .then(({ articles }) => {
         this.setState({ articles });
       })

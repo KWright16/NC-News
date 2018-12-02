@@ -41,7 +41,7 @@ class Article extends Component {
   }
   componentDidMount() {
     api
-      .getData("articles", this.props.article_id)
+      .getSingleDatum("articles", this.props.article_id)
       .then(({ article }) => {
         this.setState({
           article,

@@ -2,28 +2,28 @@ import axios from "axios";
 
 const BASE_URL = "https://young-savannah-18120.herokuapp.com/api";
 
-export const getUsers = async username => {
-  const { data } = await axios.get(`${BASE_URL}/users/${username}`);
-  return data.user;
+export const getSingleDatum = async (dataType, singleDatum) => {
+  const { data } = await axios.get(`${BASE_URL}/${dataType}/${singleDatum}`);
+  return data;
 };
+
+export const getAllData = async dataType => {
+  const { data } = await axios.get(`${BASE_URL}/${dataType}`);
+  return data;
+};
+
 export const getData = async (dataType, singleDatum, subData) => {
-  if (subData) {
-    const { data } = await axios.get(
-      `${BASE_URL}/${dataType}/${singleDatum}/${subData}`
-    );
-    return data[subData];
-  } else if (singleDatum) {
-    const { data } = await axios.get(`${BASE_URL}/${dataType}/${singleDatum}`);
-    return data;
-  } else {
-    const { data } = await axios.get(`${BASE_URL}/${dataType}`);
-    return data;
-  }
+  const { data } = await axios.get(
+    `${BASE_URL}/${dataType}/${singleDatum}/${subData}`
+  );
+  return data[subData];
 };
+
 export const updateData = async (urlId, value) => {
   const { data } = await axios.put(`${BASE_URL}${urlId}/?vote=${value}`);
   return data;
 };
+
 export const postArticle = async (topicSlug, articleToAdd) => {
   const { data } = await axios.post(
     `${BASE_URL}/topics/${topicSlug}/articles`,
