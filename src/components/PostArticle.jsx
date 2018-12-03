@@ -15,6 +15,8 @@ class PostArticle extends Component {
   render() {
     const { title, body, error, created_by, blank } = this.state;
     if (!this.props.user.name) {
+      const url = { url: "/articles/new_article" };
+      localStorage.setItem("url", JSON.stringify(url));
       navigate("/login");
     }
     const message = blank ? "All fields required" : "";

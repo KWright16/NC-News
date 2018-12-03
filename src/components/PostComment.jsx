@@ -60,7 +60,12 @@ class PostComment extends Component {
       const url = { url: `/articles/${articleId}` };
       localStorage.setItem("url", JSON.stringify(url));
       localStorage.setItem("comment", JSON.stringify(body));
-      navigate("/login");
+      navigate("/login", {
+        state: {
+          from: "postComment",
+          message: "Your comment will be saved for you to go back to"
+        }
+      });
     } else if (body.length === 0) {
       this.setState({ blank: true });
     } else {

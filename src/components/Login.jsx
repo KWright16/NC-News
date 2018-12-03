@@ -21,13 +21,22 @@ class Login extends Component {
     if (loggedIn && url) {
       url = JSON.parse(url);
       localStorage.removeItem("url");
-      navigate(url.url);
+      navigate(url.url, {
+        replace: true
+      });
     }
     if (loggedIn) return <h2>Welcome back {username}</h2>;
     return (
       <div className="form">
         <p className={blank || error ? "blank" : ""}>{message}</p>
-        <br />
+        <p>
+          {this.props.location.state.from === "postComment" ? (
+            this.props.location.state.message
+          ) : (
+            <br />
+          )}
+        </p>
+
         <form onSubmit={this.handleSubmit}>
           <label className="input" htmlFor="username">
             Username
