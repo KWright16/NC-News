@@ -3,7 +3,7 @@ import "./App.css";
 import "./spinner.css";
 import Nav from "./components/Nav";
 import { Router } from "@reach/router";
-import Articles from "./components/Articles";
+import Homepage from "./components/Homepage";
 import Sidebar from "./components/Sidebar";
 import Topic from "./components/Topic";
 import Article from "./components/Article";
@@ -30,7 +30,7 @@ class App extends Component {
         <Nav />
         <Sidebar user={user} />{" "}
         <Router className="main">
-          <Articles sortArticles={this.sortArticles} path="/" />
+          <Homepage sortArticles={this.sortArticles} path="/" />
           <Login login={this.login} path="/login" />
           <Logout path="/logout" logout={this.logout} />
           <Topic sortArticles={this.sortArticles} path="/topic/:slug" />
