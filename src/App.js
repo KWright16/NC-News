@@ -30,10 +30,10 @@ class App extends Component {
         <Nav />
         <Sidebar user={user} />{" "}
         <Router className="main">
-          <Articles path="/" />
+          <Articles sortArticles={this.sortArticles} path="/" />
           <Login login={this.login} path="/login" />
           <Logout path="/logout" logout={this.logout} />
-          <Topic path="/topic/:slug" />
+          <Topic sortArticles={this.sortArticles} path="/topic/:slug" />
           <Article user={user} path="/articles/:article_id/*" />
           <PostArticle user={user} path="/articles/new_article" />
           <NotFound default />
@@ -62,6 +62,23 @@ class App extends Component {
         user: {}
       });
     }
+  };
+  sortArticles = (articles, sortBy) => {
+    const sortFormatted = item => {
+      return parseInt(
+        item.created_at
+          .split("-")
+          .join("")
+          .slice(0, 8) +
+          item.created_at
+            .split(":")
+            .join("")
+            .slice(11, 17)
+      );
+    };
+    return sortBy === "popularity"
+      ? articles.sort((a, b) => b.votes - a.votes)
+      : articles.sort((a, b) => sortFormatted(b) - sortFormatted(a));
   };
 }
 

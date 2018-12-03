@@ -6,31 +6,44 @@ import PropTypes from "prop-types";
 class Topic extends Component {
   state = {
     articles: [],
-    isLoading: true
+    isLoading: true,
+    sortBy: "mostRecent"
   };
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, sortBy } = this.state;
     if (isLoading) return <div className="loader">Loading...</div>;
+    const sortedArticles = this.props.sortArticles(articles, sortBy);
+
     return (
-      <div>
+      <div className="clearfix">
+        <div className="sortBy">
+          <label htmlFor="sortBy">Sort By: </label>
+          <select
+            className="input-box"
+            id="sortBy"
+            onChange={this.handleChange}
+            defaultValue="mostRecent"
+          >
+            <option value="mostRecent">Most Recent</option>
+            <option value="popularity">Popularity</option>
+          </select>
+        </div>
         <ul className="articles">
-          {articles
-            .sort((a, b) => b.votes - a.votes)
-            .map(article => {
-              return (
-                <li className="article-list" key={article._id}>
-                  <Link className="link" to={`/articles/${article._id}`}>
-                    <h3 className="article-title">{article.title}</h3>
-                  </Link>
-                  <p className="by">By {article.created_by.name}</p>
-                  <p>
-                    Votes {article.votes}, Comments {article.comment_count}
-                  </p>
-                  <br />
-                  <br />
-                </li>
-              );
-            })}
+          {sortedArticles.map(article => {
+            return (
+              <li className="article-list" key={article._id}>
+                <Link className="link" to={`/articles/${article._id}`}>
+                  <h3 className="article-title">{article.title}</h3>
+                </Link>
+                <p className="by">By {article.created_by.name}</p>
+                <p>
+                  Votes {article.votes}, Comments {article.comment_count}
+                </p>
+                <br />
+                <br />
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
@@ -63,6 +76,12 @@ class Topic extends Component {
           }
         });
       });
+  };
+  handleChange = event => {
+    const { id, value } = event.target;
+    this.setState({
+      [id]: value
+    });
   };
 }
 

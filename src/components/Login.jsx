@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as api from "../api";
 import { navigate } from "@reach/router";
-import Popup from "reactjs-popup";
 
 class Login extends Component {
   state = {

@@ -64,7 +64,7 @@ ul {
   margin-right: auto;
 }
 .articles {
-  margin-top: 5%;
+  margin-top: 8%;
 }
 .article-title {
   text-decoration: none;
@@ -91,6 +91,7 @@ ul {
   font-style: italic;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .commentFormContainer {
   margin-right: auto;
   margin-left: auto;
@@ -148,6 +149,16 @@ ul {
 }
 .menu-opener {
   display: none;
+}
+@media all and (min-width: 470px) {
+  .clearfix {
+    overflow: auto;
+  }
+  .sortBy {
+    margin-top: 2%;
+    width: 200px;
+    float: right;
+  }
 }
 @media all and (max-width: 700px) {
   .formContainer {
@@ -224,6 +235,9 @@ ul {
   #nav-toggle ~ .sidebar,
   #nav-toggle ~ label {
     transition: 1s transform;
+  }
+  .sortBy {
+    display: none;
   }
 }
 .link {
