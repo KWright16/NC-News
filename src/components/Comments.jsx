@@ -13,9 +13,10 @@ class Comments extends Component {
   render() {
     const { comments, isLoading, error } = this.state;
     if (isLoading) return <div className="loader">Loading...</div>;
-    if (error) return <p>Something went wrong:</p>;
+    // if (error) return <p>No comments found</p>;
     return (
       <div>
+        <p>{error ? "No comments found" : ""}</p>
         {comments.map(comment => {
           return (
             <div key={comment._id}>
@@ -41,12 +42,17 @@ class Comments extends Component {
     this.fetchComments();
   }
   fetchComments = () => {
-    api.getData("articles", this.props.article, "comments").then(comments => {
-      this.setState({
-        comments,
-        isLoading: false
+    api
+      .getData("articles", this.props.article, "comments")
+      .then(comments => {
+        this.setState({
+          comments,
+          isLoading: false
+        });
+      })
+      .catch(error => {
+        this.setState({ error, isLoading: false });
       });
-    });
   };
 
   deleteComment = event => {

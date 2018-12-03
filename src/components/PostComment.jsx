@@ -19,7 +19,7 @@ class PostComment extends Component {
 
     if (comment.body) {
       return (
-        <div>
+        <>
           <p className="by">{comment.created_by.username}</p>
           <p>{comment.body}</p>
           <p>0 votes</p>
@@ -29,7 +29,7 @@ class PostComment extends Component {
             handleSubmit={this.handleSubmit}
             body={this.state.body}
           />
-        </div>
+        </>
       );
     }
     return (
