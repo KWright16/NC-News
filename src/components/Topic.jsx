@@ -11,14 +11,13 @@ class Topic extends Component {
     sortBy: "mostRecent"
   };
   render() {
-    const { articles, isLoading, sortBy } = this.state;
+    const { articles, isLoading } = this.state;
     if (isLoading) return <div className="loader">Loading...</div>;
-    const sortedArticles = this.props.sortArticles(articles, sortBy);
 
     return (
       <Articles
         handleChange={this.handleChange}
-        sortedArticles={sortedArticles}
+        sortedArticles={articles}
         path="/articles"
       />
     );
@@ -26,17 +25,27 @@ class Topic extends Component {
   componentDidMount() {
     this.fetchArticles();
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps.slug !== this.props.slug) {
+  componentDidUpdate(prevProps, prevState) {
+    const { sortBy, articles } = this.state;
+    const { sortArticles, slug } = this.props;
+    if (prevProps.slug !== slug) {
       this.fetchArticles();
+    }
+    if (prevState.sortBy !== sortBy) {
+      const sortedArticles = sortArticles(articles, sortBy);
+      this.setState({ articles: sortedArticles, isLoading: false });
     }
   }
   fetchArticles = () => {
     api
       .getData("topics", this.props.slug, "articles")
       .then(articles => {
-        this.setState({
+        const sortedArticles = this.props.sortArticles(
           articles,
+          this.state.sortBy
+        );
+        this.setState({
+          articles: sortedArticles,
           isLoading: false
         });
       })

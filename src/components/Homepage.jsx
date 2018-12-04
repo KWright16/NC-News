@@ -12,14 +12,13 @@ class Homepage extends Component {
   };
 
   render() {
-    const { articles, isLoading, sortBy } = this.state;
+    const { articles, isLoading } = this.state;
     if (isLoading) return <div className="loader">Loading...</div>;
 
-    const sortedArticles = this.props.sortArticles(articles, sortBy);
     return (
       <Articles
         handleChange={this.handleChange}
-        sortedArticles={sortedArticles}
+        sortedArticles={articles}
         path="/articles"
       />
     );
@@ -28,7 +27,11 @@ class Homepage extends Component {
     api
       .getAllData("articles")
       .then(({ articles }) => {
-        this.setState({ articles, isLoading: false });
+        const sortedArticles = this.props.sortArticles(
+          articles,
+          this.state.sortBy
+        );
+        this.setState({ articles: sortedArticles, isLoading: false });
       })
       .catch(err => {
         const { uri } = this.props;
@@ -41,6 +44,14 @@ class Homepage extends Component {
           }
         });
       });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const { sortBy, articles } = this.state;
+    const { sortArticles } = this.props;
+    if (prevState.sortBy !== sortBy) {
+      const sortedArticles = sortArticles(articles, sortBy);
+      this.setState({ articles: sortedArticles, isLoading: false });
+    }
   }
   handleChange = event => {
     const { id, value } = event.target;
