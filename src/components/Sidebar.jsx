@@ -6,7 +6,7 @@ const Sidebar = props => {
   return (
     <>
       <input className="menu-opener" type="checkbox" id="nav-toggle" />
-      <label className="menu-opener" htmlFor="nav-toggle">
+      <label className="menu-opener label" htmlFor="nav-toggle">
         ☰
       </label>
       <nav className="sidebar">

@@ -8,7 +8,9 @@ const Articles = props => {
   return (
     <div className="clearfix">
       <div className="sortBy">
-        <label htmlFor="sortBy">Sort By: </label>
+        <label className="sortLabel" htmlFor="sortBy">
+          Sort By:{" "}
+        </label>
         <select
           className="input-box"
           id="sortBy"
