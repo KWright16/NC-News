@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./spinner.css";
+import "./mobile.css";
 import Nav from "./components/Nav";
 import { Router } from "@reach/router";
 import Homepage from "./components/Homepage";
@@ -12,6 +13,7 @@ import PostArticle from "./components/PostArticle";
 import Logout from "./components/Logout";
 import BadRequest from "./components/BadRequest";
 import NotFound from "./components/NotFound";
+import User from "./components/User";
 
 class App extends Component {
   state = {
@@ -38,6 +40,7 @@ class App extends Component {
           <PostArticle user={user} path="/articles/new_article" />
           <NotFound default />
           <BadRequest path="/error" />
+          <User user={user} path="/user" />
         </Router>
         <footer />
       </div>

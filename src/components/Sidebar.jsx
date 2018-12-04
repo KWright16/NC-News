@@ -13,7 +13,12 @@ const Sidebar = props => {
         <section>
           {props.user.username ? (
             <div>
-              <p className="user">Logged in as {props.user.username}</p>
+              <p className="user">
+                Logged in as{" "}
+                <Link className="link sidebar-text" to="/user/">
+                  {props.user.username}
+                </Link>
+              </p>
               <Link className="link" to="/logout">
                 <p className="sidebar-text">Logout</p>
               </Link>
