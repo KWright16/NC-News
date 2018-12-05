@@ -189,7 +189,9 @@ ul {
   margin-top: 1em;
   margin-left: 2em;
   text-align: left;
+  color: #07889b;
 }
+
 .user {
   border-bottom: solid 1px #bce1e4;
   padding-bottom: 2em;

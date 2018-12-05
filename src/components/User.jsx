@@ -30,12 +30,13 @@ class User extends Component {
         <ul className="usersArticles">
           <li>
             <h3>Top Articles</h3>
+            <p>These are your most popular articles</p>
           </li>
           {mostPopular ? (
             mostPopular.map(article => {
               return (
                 <li className="topArticles" key={article._id}>
-                  {article.title}
+                  <p>{article.title}</p>
                 </li>
               );
             })
