@@ -150,102 +150,24 @@ ul {
 .menu-opener {
   display: none;
 }
-@media all and (min-width: 470px) {
-  .clearfix {
-    overflow: auto;
-  }
-  .sortBy {
-    margin-top: 2%;
-    width: 200px;
-    float: right;
-  }
-}
-@media all and (max-width: 700px) {
-  .formContainer {
-    width: 65%;
-  }
-}
-@media all and (max-width: 470px) {
-  footer {
-    display: none;
-  }
-  .App {
-    grid-template: 2fr 1fr 1fr 15fr / 1fr;
-    grid-template-areas:
-      "header"
-      "nav"
-      "menu"
-      "main";
-  }
-  label {
-    display: block;
-    width: 2rem;
-    padding-top: 1rem;
-    z-index: 2;
-    border-radius: 3px;
-  }
-  .article-list {
-    border: none;
-  }
-
-  .formContainer {
-    width: 90%;
-  }
-  .commentFormContainer {
-    width: 90%;
-  }
-
-  #nav-toggle ~ label {
-    display: grid;
-    grid-area: menu;
-    background-color: #66b9bf;
-    color: #fff;
-    padding: 0.5em;
-  }
-  .login {
-    margin-top: 5rem;
-  }
-  .sidebar {
-    position: fixed;
-    bottom: 0;
-    height: 100%;
-    margin-top: 5%;
-    width: 150px;
-  }
-
-  .user {
-    padding-top: 3rem;
-  }
-
-  #nav-toggle ~ .sidebar {
-    left: -182px;
-  }
-
-  #nav-toggle:checked ~ .sidebar {
-    transform: translate(182px, 0);
-    animation-timing-function: 0.7s ease-in;
-  }
-  #nav-toggle:checked ~ label {
-    position: absolute;
-    top: 0;
-    padding-top: 2em;
-    padding: 0.5em;
-    z-index: 1;
-  }
-  #nav-toggle ~ .sidebar,
-  #nav-toggle ~ label {
-    transition: 1s transform;
-  }
-  .sortBy {
-    display: none;
-  }
-}
 .link {
   text-decoration: none;
 }
 .main {
   grid-area: main;
   overflow: auto;
+}
+.profilePic {
+  grid-area: avatar;
+  margin-right: 2em;
+  margin-top: 2em;
+}
+.pic {
+  width: 5em;
+  border: #66b9bf 2px solid;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 0, 2em;
 }
 .sidebar {
   grid-area: sidebar;
@@ -263,8 +185,34 @@ ul {
   width: 100%;
   height: 30vh;
 }
+.topArticles {
+  margin-top: 1em;
+  margin-left: 2em;
+  text-align: left;
+  color: #07889b;
+}
+
 .user {
   border-bottom: solid 1px #bce1e4;
   padding-bottom: 2em;
   color: #fff;
+}
+.user-block {
+  margin-top: 7%;
+  text-align: center;
+  display: grid;
+  grid-template: 1fr 2fr / 15fr 1fr;
+  grid-template-areas:
+    "user avatar"
+    "articles articles";
+}
+.user-details {
+  grid-area: user;
+  text-align: left;
+  margin-left: 2em;
+}
+.usersArticles {
+  grid-area: articles;
+  border: 2px #eeaa7b solid;
+  margin: 2em;
 }

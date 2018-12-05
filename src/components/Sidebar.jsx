@@ -6,14 +6,19 @@ const Sidebar = props => {
   return (
     <>
       <input className="menu-opener" type="checkbox" id="nav-toggle" />
-      <label className="menu-opener" htmlFor="nav-toggle">
+      <label className="menu-opener label" htmlFor="nav-toggle">
         ☰
       </label>
       <nav className="sidebar">
         <section>
           {props.user.username ? (
             <div>
-              <p className="user">Logged in as {props.user.username}</p>
+              <p className="user">
+                Logged in as{" "}
+                <Link className="link sidebar-text" to="/user/">
+                  {props.user.username}
+                </Link>
+              </p>
               <Link className="link" to="/logout">
                 <p className="sidebar-text">Logout</p>
               </Link>

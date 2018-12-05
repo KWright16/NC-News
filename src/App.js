@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./spinner.css";
+import "./mobile.css";
 import Nav from "./components/Nav";
 import { Router } from "@reach/router";
-import Articles from "./components/Articles";
+import Homepage from "./components/Homepage";
 import Sidebar from "./components/Sidebar";
 import Topic from "./components/Topic";
 import Article from "./components/Article";
@@ -12,6 +13,7 @@ import PostArticle from "./components/PostArticle";
 import Logout from "./components/Logout";
 import BadRequest from "./components/BadRequest";
 import NotFound from "./components/NotFound";
+import User from "./components/User";
 
 class App extends Component {
   state = {
@@ -30,7 +32,7 @@ class App extends Component {
         <Nav />
         <Sidebar user={user} />{" "}
         <Router className="main">
-          <Articles sortArticles={this.sortArticles} path="/" />
+          <Homepage sortArticles={this.sortArticles} path="/" />
           <Login login={this.login} path="/login" />
           <Logout path="/logout" logout={this.logout} />
           <Topic sortArticles={this.sortArticles} path="/topic/:slug" />
@@ -38,6 +40,7 @@ class App extends Component {
           <PostArticle user={user} path="/articles/new_article" />
           <NotFound default />
           <BadRequest path="/error" />
+          <User user={user} path="/user" />
         </Router>
         <footer />
       </div>

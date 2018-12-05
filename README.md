@@ -4,6 +4,8 @@
 
 NC News is a news website optimised for web and mobile that allows the user to browse news articles and vote them up or down and sort articles by popularity or most recent. There is additional functionality for users that are logged in. Users can add articles and make comments about their own or others articles. They can also delete their own comments.
 
+The mobile view features a slide out menu to make optimum use of the space.
+
 If users are not signed in they will be redirected to a login but any comments they have made will be saved so that their work is not lost. Voting is limited and form validation is used to limit bad requests.
 
 The site makes use of optimism for a faster user experience.
