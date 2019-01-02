@@ -32,10 +32,10 @@ class App extends Component {
         <Nav />
         <Sidebar user={user} />{" "}
         <Router className="main">
-          <Homepage sortArticles={this.sortArticles} path="/" />
+          <Homepage sortArticles={this.sortArticles} searchArticles={this.searchArticles} path="/" />
           <Login login={this.login} path="/login" />
           <Logout path="/logout" logout={this.logout} />
-          <Topic sortArticles={this.sortArticles} path="/topic/:slug" />
+          <Topic sortArticles={this.sortArticles} searchArticles={this.searchArticles} path="/topic/:slug" />
           <Article user={user} path="/articles/:article_id/*" />
           <PostArticle user={user} path="/articles/new_article" />
           <NotFound default />
@@ -73,16 +73,24 @@ class App extends Component {
           .split("-")
           .join("")
           .slice(0, 8) +
-          item.created_at
-            .split(":")
-            .join("")
-            .slice(11, 17)
+        item.created_at
+          .split(":")
+          .join("")
+          .slice(11, 17)
       );
     };
     return sortBy === "popularity"
       ? articles.sort((a, b) => b.votes - a.votes)
       : articles.sort((a, b) => sortFormatted(b) - sortFormatted(a));
   };
+
+  searchArticles = (articles, searchTerm) => {
+    const re = new RegExp(searchTerm, 'ig')
+    return articles.filter(article => {
+      return article.title.search(re) >= 0 || article.created_by.name.search(re) >= 0 || article.body.search(re) >= 0
+    })
+  }
 }
+
 
 export default App;

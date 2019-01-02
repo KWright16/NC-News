@@ -3,10 +3,19 @@ import { Link } from "@reach/router";
 import PropTypes from "prop-types";
 
 const Articles = props => {
-  const { sortedArticles, handleChange } = props;
+  const { sortedArticles, handleChange, handleSubmit } = props;
 
   return (
     <div className="clearfix">
+      <form onSubmit={handleSubmit} className="search">
+        <input
+          className="input-box"
+          id="searchTerm"
+          type="text"
+          onChange={handleChange}
+        />
+        <button>Search</button>
+      </form>
       <div className="sortBy">
         <label className="sortLabel" htmlFor="sortBy">
           Sort By:{" "}

@@ -136,13 +136,11 @@ ul {
   color: #fff;
   line-height: 0.5em;
   margin: 0;
+  display: flex;
+  justify-content: space-evenly;
 }
 .navLink:hover {
   color: #eeaa7b;
-}
-.navLink {
-  display: flex;
-  justify-content: space-evenly;
 }
 .not-completed {
   border: solid 1px rgb(223, 35, 35);
@@ -168,6 +166,14 @@ ul {
   border-radius: 5px;
   padding: 1em;
   margin: 0, 2em;
+}
+.search {
+  display: inline;
+  float: left;
+  margin: 0.75em 0em 0.25em 1.25em;
+}
+.search input {
+  padding: 0.17em;
 }
 .sidebar {
   grid-area: sidebar;

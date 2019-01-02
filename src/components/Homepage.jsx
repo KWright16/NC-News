@@ -8,17 +8,20 @@ class Homepage extends Component {
   state = {
     articles: [],
     isLoading: true,
-    sortBy: "mostRecent"
+    sortBy: "mostRecent",
+    searchTerm: '',
+    searchedArticles: null
   };
 
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, searchedArticles } = this.state;
     if (isLoading) return <div className="loader">Loading...</div>;
 
     return (
       <Articles
         handleChange={this.handleChange}
-        sortedArticles={articles}
+        handleSubmit={this.handleSubmit}
+        sortedArticles={searchedArticles ? searchedArticles : articles}
         path="/articles"
       />
     );
@@ -31,7 +34,7 @@ class Homepage extends Component {
           articles,
           this.state.sortBy
         );
-        this.setState({ articles: sortedArticles, isLoading: false });
+        this.setState({ articles: sortedArticles, isLoading: false, searchedArticles: null });
       })
       .catch(err => {
         const { uri } = this.props;
@@ -59,6 +62,13 @@ class Homepage extends Component {
       [id]: value
     });
   };
+  handleSubmit = event => {
+    event.preventDefault()
+    const { articles, searchTerm } = this.state
+    const { searchArticles } = this.props
+    const searchedArticles = searchArticles(articles, searchTerm)
+    this.setState({ searchedArticles: searchedArticles, isLoading: false })
+  }
 }
 
 Homepage.propTypes = {

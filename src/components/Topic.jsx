@@ -8,16 +8,19 @@ class Topic extends Component {
   state = {
     articles: [],
     isLoading: true,
-    sortBy: "mostRecent"
+    sortBy: "mostRecent",
+    searchTerm: '',
+    searchedArticles: null
   };
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, searchedArticles } = this.state;
     if (isLoading) return <div className="loader">Loading...</div>;
 
     return (
       <Articles
         handleChange={this.handleChange}
-        sortedArticles={articles}
+        handleSubmit={this.handleSubmit}
+        sortedArticles={searchedArticles ? searchedArticles : articles}
         path="/articles"
       />
     );
@@ -46,7 +49,8 @@ class Topic extends Component {
         );
         this.setState({
           articles: sortedArticles,
-          isLoading: false
+          isLoading: false,
+          searchedArticles: null
         });
       })
       .catch(err => {
@@ -61,6 +65,14 @@ class Topic extends Component {
         });
       });
   };
+  handleSubmit = event => {
+    event.preventDefault()
+    const { articles, searchTerm } = this.state
+    const { searchArticles } = this.props
+    const searchedArticles = searchArticles(articles, searchTerm);
+    this.setState({ searchedArticles: searchedArticles, isLoading: false })
+
+  }
   handleChange = event => {
     const { id, value } = event.target;
     this.setState({

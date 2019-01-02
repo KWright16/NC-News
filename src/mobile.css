@@ -1,4 +1,4 @@
-@media all and (min-width: 470px) {
+@media all and (min-width: 480px) {
   .clearfix {
     overflow: auto;
   }
@@ -12,8 +12,17 @@
   .formContainer {
     width: 65%;
   }
+  .search {
+    margin: 1.5%;
+  }
+  .search input {
+    width: 5em;
+  }
+  .search button {
+    width: 4em;
+  }
 }
-@media all and (max-width: 470px) {
+@media all and (max-width: 480px) {
   footer {
     display: none;
   }
@@ -60,7 +69,24 @@
     margin-top: 5%;
     width: 150px;
   }
-
+  .search {
+    display: block;
+    float: unset;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+  }
+  .sortBy {
+    display: flex;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+  .sortBy label {
+    order: 1;
+    margin: 0.25rem;
+  }
   .user {
     padding-top: 3rem;
   }
@@ -83,10 +109,5 @@
   #nav-toggle ~ .sidebar,
   #nav-toggle ~ label {
     transition: 1s transform;
-  }
-  .sortBy {
-    /* display: none; */
-  }
-  sortLabel {
   }
 }
