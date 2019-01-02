@@ -7,7 +7,7 @@ const Articles = props => {
 
   return (
     <div className="clearfix">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="search">
         <input
           className="input-box"
           id="searchTerm"
